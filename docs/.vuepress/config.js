@@ -40,7 +40,8 @@ module.exports = {
     nav: [
       { text: '主页', link: '/' },
       { text: '使用说明', link: '/guide/' },
-      { text: '部署说明', link: '/deploy/' }
+      { text: '部署说明', link: '/deploy/' },
+      { text: '特别感谢', link: '/thanks/' },
     ]
   },
 }
