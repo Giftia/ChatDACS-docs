@@ -13,7 +13,7 @@ features:
   - title: 支持接入哔哩哔哩直播
     details: 可以接入哔哩哔哩直播间，作为虚拟中之人运行
   - title: 不仅是QQ机器人
-    details: 通过扩展，还可以支持Telegram、钉钉等其他平台
+    details: 还支持QQ频道、Telegram、钉钉等其他平台（当前已支持QQ频道
 
 footer: CC-BY-SA-4.0 Licensed | Copyright © 2022-present Giftina | Powered by VuePress
 ---
