@@ -237,6 +237,10 @@
 
   - 根据字幕台词搜索名场面出处，原作：https://github.com/windrises/dialogue.moe
 
+- [x] `最新本子`
+
+  - 从 https://cangku.icu/feed 获取最新投稿
+
 - 仅在 qq 端 中生效的功能：
 
   - [x] `张菊@小夜` 与 `闭菊`
