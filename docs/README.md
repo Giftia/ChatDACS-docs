@@ -15,5 +15,5 @@ features:
   - title: 不仅是QQ机器人
     details: 还支持QQ频道、Telegram(开发中)等其他平台
 
-footer: CC-BY-SA-4.0 Licensed | Copyright © 2022-present Giftina | Powered by VuePress
+footer: CC-BY-SA-4.0 Licensed | Copyright © 2022-Present Giftina | Powered by VuePress
 ---

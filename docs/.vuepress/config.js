@@ -1,6 +1,6 @@
 module.exports = {
   base: '/',
-  title: 'ChatDACS 文档',
+  title: '星野夜蝶 使用文档',
   description: '一个简单的机器人框架，支持接入哔哩哔哩直播，具备完全功能的web端控制台。',
   plugins: {
     '@vuepress/back-to-top': {},
