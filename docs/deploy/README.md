@@ -8,9 +8,9 @@
 
 2. 在页面下方的产品 `Assets` 里点击下载 `ChatDACS-vX.X.X.zip` 压缩包，
 
-3. 解压 `ChatDACS-vX.X.X.zip` 压缩包，直接运行 `chatdacs.exe` 就可以辣。
+3. 解压 `ChatDACS-vX.X.X.zip` 压缩包，注意文件路径不得存在非 ASCII 字符。
 
-4. 按提示用 qq 扫描二维码即可登陆。
+4. 直接运行文件夹里的 `chatdacs.exe` 就可以辣，按提示用 qq 扫描二维码即可登陆 qq。
 
 如果在操作过程中有任何问题的话，请进 QQ 群 `120243247` 来问问题吧，有问必答噢。
 
