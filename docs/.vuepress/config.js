@@ -29,7 +29,7 @@ module.exports = {
     repoLabel: '查看源码',
     lastUpdated: '最后更新',
     docsDir: 'docs',
-    docsBranch: 'master',
+    docsBranch: 'main',
     editLinks: true,
     editLinkText: '帮助完善此页面',
     smoothScroll: true,
@@ -41,6 +41,8 @@ module.exports = {
       { text: '主页', link: '/' },
       { text: '使用说明', link: '/guide/' },
       { text: '部署说明', link: '/deploy/' },
+      { text: '哔哩哔哩接入', link: '/bilibili/' },
+      { text: 'QQ频道接入', link: '/qqGuild/' },
       { text: '特别感谢', link: '/thanks/' },
     ]
   },

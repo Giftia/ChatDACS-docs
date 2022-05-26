@@ -90,4 +90,4 @@
 - [https://github.com/Sora233/DDBOT](https://github.com/Sora233/DDBOT)
 - [https://github.com/upx/upx](https://github.com/upx/upx)
 - [https://www.mpg123.de/](https://www.mpg123.de/)
-- 特别感谢我的小花花、朋友们，以及倾心分享知识的各位。
+- 特别感谢我的女友 `小花花`、我的猫猫 `便便`、朋友们，以及倾心分享知识的各位。
