@@ -94,6 +94,7 @@
 - [x] 简单好用的插件系统 `Easy Use Plugins System`
 - [x] 支持接入哔哩哔哩直播间 `Support Bilibili Live`
 - [x] 支持接入 QQ 频道 `Support QQ Guild`
+- [ ] 支持接入 Telegram `Support Telegram`
 - [ ] 哔哩哔哩直播互动游戏 `Bilibili Live Game`
 
 ---
