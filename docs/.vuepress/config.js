@@ -2,6 +2,9 @@ module.exports = {
   base: '/',
   title: '星野夜蝶 使用文档',
   description: '一个简单的机器人框架，支持接入哔哩哔哩直播，具备完全功能的web端控制台。',
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
+  ],
   plugins: {
     '@vuepress/back-to-top': {},
     '@vuepress/nprogress': {},
@@ -22,8 +25,15 @@ module.exports = {
         }
       }
     },
+    '@vuepress/last-updated': {
+      dateOptions: {
+        timeZone: "Asia/Shanghai",
+        hour12: false,
+      },
+    },
   },
   themeConfig: {
+    logo: '/favicon.ico',
     repo: 'Giftia/ChatDACS',
     docsRepo: 'Giftia/ChatDACS-docs',
     repoLabel: '查看源码',
