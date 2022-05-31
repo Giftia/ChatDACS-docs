@@ -47,6 +47,7 @@ module.exports = {
     displayAllHeaders: true,
     backToHome: "返回首页",
     activeHeaderLinks: true,
+    contributors: true,
     nav: [
       { text: '主页', link: '/' },
       { text: '使用说明', link: '/guide/' },
