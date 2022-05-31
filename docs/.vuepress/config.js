@@ -1,7 +1,12 @@
 module.exports = {
+  locales: {
+    '/': {
+      lang: 'zh-CN',
+      title: '星野夜蝶 使用文档',
+      description: '一个简单的机器人框架，支持接入哔哩哔哩直播，具备完全功能的web端控制台。',
+    }
+  },
   base: '/',
-  title: '星野夜蝶 使用文档',
-  description: '一个简单的机器人框架，支持接入哔哩哔哩直播，具备完全功能的web端控制台。',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
   ],
@@ -15,14 +20,9 @@ module.exports = {
     '@vuepress/pwa': {
       skipWaiting: true,
       serviceWorker: true,
-      updatePopup: true
-    },
-    '@vuepress/plugin-pwa-popup': {
-      locales: {
-        '/': {
-          message: '文档更新了，点击刷新',
-          buttonText: '刷新',
-        }
+      updatePopup: {
+        message: '文档更新了，点击刷新',
+        buttonText: '刷新',
       }
     },
     '@vuepress/last-updated': {
@@ -55,5 +55,8 @@ module.exports = {
       { text: 'QQ频道接入', link: '/qqGuild/' },
       { text: '特别感谢', link: '/thanks/' },
     ]
+  },
+  markdown: {
+    lineNumbers: false,
   },
 }
