@@ -20,7 +20,7 @@
   - 息知频道 key，用于 微信息知频道消息推送 功能，申请地址 https://xz.qqoq.net/
 
 ::: warning 注意
-- 项目使用了 `ffmpeg` 依赖，用于 `go-cqhttp` 的语音格式转码，为了减小发行包体积，发行包内并没有内置 `ffmpeg`。故请自行下载 `ffmpeg.exe` 并放置于 `/plugins/go-cqhttp/` 文件夹下。下载地址：[giftia.lanzouf.com/ir05s05q67bg](https://giftia.lanzouf.com/ir05s05q67bg)，若链接失效，请移步QQ群 `120243247` 群共享自取。
+- 项目使用了 `ffmpeg` 依赖，用于 `go-cqhttp` 的语音格式转码，为了减小发行包体积，发行包内并没有内置 `ffmpeg`。故请自行下载 `ffmpeg.exe` 并放置于 `/plugins/go-cqhttp/` 文件夹下。下载地址：[giftia.lanzouf.com/ir05s05q67bg](https://giftia.lanzouf.com/ir05s05q67bg)，若链接失效，请移步QQ群 `120243247` 群共享自取。如果您不需要 qq 端发送语音，可以无视本步骤。
 
 - 建议使用注册时间久一些的 QQ 号作为机器人登陆使用，不容易被封号。因为新号很容易因为疼讯检测到的突然频繁发言而被风控。
 
