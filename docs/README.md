@@ -24,5 +24,6 @@ description: 一个简单的机器人框架，支持接入哔哩哔哩直播，�
 meta:
   - name: keywords
     content: 星野夜蝶, 小夜, Giftia, Giftina, ChatDACS
-    baidu-site-verification: code-NQKKlgpSrz
+  - name: baidu-site-verification
+    content: code-NQKKlgpSrz
 ---
