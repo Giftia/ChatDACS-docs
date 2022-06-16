@@ -14,7 +14,7 @@
 
 ---
 
-# 😘 赞助者致谢名单：(时间降序)
+## 😘 赞助者致谢名单：(时间降序)
 
 [https://afdian.net/@xiaoye_bot](https://afdian.net/@xiaoye_bot)
 
@@ -80,7 +80,7 @@
 | 呆蛙 190888888                     |           60           |                                                                                                                                                                                       |
 
 ---
-# 对本项目提供帮助的致谢名单（排名不分先后）：
+## 对本项目提供帮助的致谢名单（排名不分先后）：
 
 - [https://niconi.co.ni/](https://niconi.co.ni/)
 - [https://www.layuion.com/](https://www.layuion.com/)
