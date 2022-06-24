@@ -67,9 +67,9 @@
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```
 
-```tip 提示
+:::tip 提示
 该步骤目的是安装 `cnpm` ，用于安装依赖组件。`cnpm` 是淘宝的 `npm` 镜像源，用于在中国大陆加速安装依赖的速度和成功率。
-```
+:::
 
 4. 等待进度完成后运行：
 
@@ -77,9 +77,9 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 cnpm ci
 ```
 
-```tip 提示
+:::tip 提示
 该步骤会安装小夜的依赖组件。对比网上教程常用的 `npm i` ，`cnpm ci` 的效率和安装成功率更高。
-```
+:::
 
 5. 等待进度完成后运行小夜：
 
