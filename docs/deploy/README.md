@@ -16,14 +16,14 @@
 
 ---
 
-:::tip 可选
+::: tip 可选
 小夜是无需手动配置，开箱即用的，但是由于使用了一些第三方收费接口， `随机昵称、赛博百科问答、随机买家秀、微信息知频道消息推送` 功能是默认不启用的。若想使用小夜更完整的功能，请自行访问以下申请地址，申请自己的接口密钥后，修改 `config` 文件夹内的 `config.yml` 文件中的对应配置项：
   - 天行接口，用于 [随机昵称](https://www.tianapi.com/apiview/36)、[赛博百科问答](https://www.tianapi.com/apiview/31) 功能 → [申请地址](https://www.tianapi.com/)
   - 卡特实验室接口，用于 [随机买家秀](https://api.sumt.cn/docs-rand.tbimg.html) 功能 → [申请地址](https://api.sumt.cn/)
   - 息知频道 key，用于 微信息知频道消息推送 功能 → [申请地址](https://xz.qqoq.net/)
 :::
 
-:::tip 提示
+::: tip 提示
 1. 本项目使用了 `ffmpeg` 依赖，用于 `go-cqhttp` 的语音格式转码，为了减小发行包体积，发行包内并没有内置 `ffmpeg`。故请自行下载 `ffmpeg.exe` 并放置于 `/plugins/go-cqhttp/` 文件夹下。下载地址：[https://giftia.lanzouf.com/ir05s05q67bg](https://giftia.lanzouf.com/ir05s05q67bg)，若链接失效，请移步QQ群 `120243247` 群共享自取。如果您不需要 qq 端发送语音，可以无视本步骤。
 
 2. 建议使用注册时间久一些的 QQ 号作为小夜号登陆使用，不容易被封号。因为新号很容易因为疼讯检测到的突然频繁发言而被风控。
@@ -35,7 +35,7 @@
 5. 若不想使用某些插件功能，如色图功能，请直接删除 `plugins` 文件夹里的对应插件，并重启小夜。也可以把插件的文件后缀名 `.js` 改为别的。
 :::
 
-## 🆕 最新测试版 Latest Test Version
+## 🆕 尝试最新测试版 Try Latest Beta Version
 
 想要试试最新的功能吗，请试试看最新测试版吧：
 
@@ -71,7 +71,7 @@
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```
 
-:::tip 提示
+::: tip 提示
 该步骤目的是安装 `cnpm` ，用于安装依赖组件。`cnpm` 是淘宝的 `npm` 镜像源，用于在中国大陆加速安装依赖的速度和成功率。
 :::
 
@@ -81,7 +81,7 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 cnpm ci
 ```
 
-:::tip 提示
+::: tip 提示
 该步骤会安装小夜的依赖组件。对比网上教程常用的 `npm i` ，`cnpm ci` 的效率和安装成功率更高。
 :::
 
