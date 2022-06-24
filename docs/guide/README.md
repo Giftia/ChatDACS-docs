@@ -11,20 +11,25 @@
       Hoshino Yedie<br/>
     </h1>
     <h2 align="center">
-      沙雕Ai聊天系统
-      ChatDACS
-    </h2>
-    <h3>
+      沙雕Ai聊天系统<br/>
+      ChatDACS<br/>
       (Chatbot : shaDiao Ai Chat System)
-    </h3>
+    </h2>
     <p align="center">
-      一个简单的机器人框架，支持接入哔哩哔哩直播，具备完全功能的web网页控制台。<br/>
-      技术栈：语言 —— JavaScript，Web框架 —— Express，前端组件库 —— layui。<br/>
-      画师：塘李<br/>
-      <br/>
-      示例 DEMO：<a href="http://110.42.221.72/" target="_blank">http://110.42.221.72/</a><br/>
-      语录来自小夜：<a href="https://github.com/Giftia/Project_Xiaoye" target="_blank">github.com/Giftia/Project_Xiaoye</a>
-      <br>
+      一个简单的聊天机器人框架，支持接入多个平台，具备全功能的网页控制台。<br/>
+      技术栈：后端 —— Node.js，前端组件库 —— layui。<br/>
+      画师：塘 李<br/>
+      <p align="center">
+        <a href="https://stats.uptimerobot.com/JYr8kI8jqg" target="_blank"><img src="https://img.shields.io/uptimerobot/ratio/m783632550-7da46d24226cb151b978c810?label=%E8%BF%90%E8%A1%8C%E6%83%85%E5%86%B5&style=for-the-badge" alt="Uptime(30 days)" /></a>
+        &nbsp;
+        <a href="http://110.42.221.72/" target="_blank"><img src="https://img.shields.io/website?label=demo&style=for-the-badge&up_message=online&url=http://110.42.221.72/" alt="Demo" /></a>
+        &nbsp;
+        <a href="https://github.com/Giftia/ChatDACS/actions" target="_blank"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/Giftia/ChatDACS/Compile%20ChatDACS%20for%20Windows?label=%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA&style=for-the-badge"></a>
+        &nbsp;
+        <img src="https://img.shields.io/github/license/Giftia/ChatDACS?label=%E5%BC%80%E6%BA%90%E8%AE%B8%E5%8F%AF&style=for-the-badge" alt="License" />
+        &nbsp;
+        <img src="https://img.shields.io/github/languages/code-size/Giftia/ChatDACS?label=%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%B0%8F&style=for-the-badge" alt="Code size" />
+      </p>
     </p>
   </td>
 
@@ -36,18 +41,6 @@
   </td>
   </tr>
 </table>
-
-<p align="center">
-  <a href="https://stats.uptimerobot.com/JYr8kI8jqg"><img src="https://img.shields.io/uptimerobot/ratio/m783632550-7da46d24226cb151b978c810?label=%E5%AD%98%E6%B4%BB%E7%8E%87&style=for-the-badge" alt="Uptime(30 days)" /></a>
-  &nbsp;
-  <a href="http://110.42.221.72/"><img src="https://img.shields.io/website?label=demo&style=for-the-badge&up_message=online&url=http://110.42.221.72/" alt="Demo" /></a>
-  &nbsp;
-  <a href="https://github.com/Giftia/ChatDACS/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/Giftia/ChatDACS/Compile%20ChatDACS%20for%20Windows?label=%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA&style=for-the-badge"></a>
-  &nbsp;
-  <img src="https://img.shields.io/github/license/Giftia/ChatDACS?label=%E5%BC%80%E6%BA%90%E8%AE%B8%E5%8F%AF&style=for-the-badge" alt="License" />
-  &nbsp;
-  <img src="https://img.shields.io/github/languages/code-size/Giftia/ChatDACS?label=%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%B0%8F&style=for-the-badge" alt="Code size" />
-</p>
 
 ---
 

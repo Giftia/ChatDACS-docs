@@ -3,7 +3,7 @@ home: true
 heroImage: https://avatars.githubusercontent.com/u/12429652?v=4
 heroText: 星野夜蝶
 subText: Hoshino Yedie
-tagline: 一个简单的机器人框架，支持接入哔哩哔哩直播，具备完全功能的web端控制台
+tagline: 一个简单的聊天机器人框架，支持接入多个平台，具备全功能的网页控制台
 actionText: 使用说明 →
 actionLink: /guide/
 
@@ -20,7 +20,7 @@ features:
 footer: CC-BY-SA-4.0 Licensed | Copyright © 2022-Present Giftina | Powered by VuePress
 
 title: 星野夜蝶 使用文档
-description: 一个简单的机器人框架，支持接入哔哩哔哩直播，具备完全功能的web端控制台
+description: 一个简单的聊天机器人框架，支持接入多个平台，具备全功能的网页控制台
 meta:
   - name: keywords
     content: 星野夜蝶, 小夜, Giftia, Giftina, ChatDACS

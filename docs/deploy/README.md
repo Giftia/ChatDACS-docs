@@ -4,20 +4,24 @@
 
 来试试快速启动吧， `1` 键运行， `1` 分钟运行 `1` 个属于自己的小夜：
 
-1. 首先点击进入 [最新发行包页面](https://github.com/Giftia/ChatDACS/releases/latest) ；
+1. 首先点击进入 [最新发行包页面](https://github.com/Giftia/ChatDACS/releases/latest)
 
-2. 在页面下方的资产 `Assets` 里点击下载适合您系统的压缩包 `ChatDACS-vX.X.X_系统.zip` 压缩包；
+2. 在页面下方的资产 `Assets` 里点击下载适合您系统的压缩包 `ChatDACS-vX.X.X_系统.zip` 压缩包
 
-3. 解压 `ChatDACS-vX.X.X_系统.zip` 压缩包，注意文件路径不得存在非 ASCII 字符；
+3. 解压 `ChatDACS-vX.X.X_系统.zip` 压缩包，注意文件路径不得存在非 ASCII 字符
 
-4. 直接运行文件夹里的 `chatdacs.exe` 就可以辣，按提示用 qq 扫描二维码即可登陆 qq。
+4. 直接运行文件夹里的 `chatdacs.exe` 就可以辣，按提示用 qq 扫描二维码即可登陆 qq
 
 如果在操作过程中有任何问题的话，请进 QQ 群 `120243247` 来问问题吧，有问必答噢。
 
-可选项：小夜是无需手动配置，开箱即用的，但是由于使用了一些第三方收费接口， `随机昵称、赛博百科问答、随机买家秀、微信息知频道消息推送` 功能是默认不启用的。若想使用小夜更完整的功能，请自行访问以下申请地址，申请自己的接口密钥后，修改 `config` 文件夹内的 `config.yml` 文件中的对应配置项：
+---
+
+:::tip 可选
+小夜是无需手动配置，开箱即用的，但是由于使用了一些第三方收费接口， `随机昵称、赛博百科问答、随机买家秀、微信息知频道消息推送` 功能是默认不启用的。若想使用小夜更完整的功能，请自行访问以下申请地址，申请自己的接口密钥后，修改 `config` 文件夹内的 `config.yml` 文件中的对应配置项：
   - 天行接口，用于 [随机昵称](https://www.tianapi.com/apiview/36)、[赛博百科问答](https://www.tianapi.com/apiview/31) 功能 → [申请地址](https://www.tianapi.com/)
   - 卡特实验室接口，用于 [随机买家秀](https://api.sumt.cn/docs-rand.tbimg.html) 功能 → [申请地址](https://api.sumt.cn/)
   - 息知频道 key，用于 微信息知频道消息推送 功能 → [申请地址](https://xz.qqoq.net/)
+:::
 
 :::tip 提示
 1. 本项目使用了 `ffmpeg` 依赖，用于 `go-cqhttp` 的语音格式转码，为了减小发行包体积，发行包内并没有内置 `ffmpeg`。故请自行下载 `ffmpeg.exe` 并放置于 `/plugins/go-cqhttp/` 文件夹下。下载地址：[https://giftia.lanzouf.com/ir05s05q67bg](https://giftia.lanzouf.com/ir05s05q67bg)，若链接失效，请移步QQ群 `120243247` 群共享自取。如果您不需要 qq 端发送语音，可以无视本步骤。
@@ -35,13 +39,13 @@
 
 想要试试最新的功能吗，请试试看最新测试版吧：
 
-1. 首先点击进入自动化部署工作流 `Actions` [https://github.com/Giftia/ChatDACS/actions](https://github.com/Giftia/ChatDACS/actions) ；
+1. 首先点击进入小夜的自动构建 → <a href="https://github.com/Giftia/ChatDACS/actions" target="_blank"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/Giftia/ChatDACS/Compile%20ChatDACS%20for%20Windows?label=%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA&style=for-the-badge"></a>
 
-2. 点击最新成功构建的工作流 `Compile ChatDACS for Windows` 或 `Compile ChatDACS for Linux` ，选择哪个取决于你的系统；
+2. 点击最新成功构建的工作流 `Compile ChatDACS for Windows` 或 `Compile ChatDACS for Linux` ，选择哪个取决于你的系统
 
-3. 在页面下方的制品 `Artifacts` 里点击下载自动构建好的 `ChatDACS` 压缩包；
+3. 在页面下方的制品 `Artifacts` 里点击下载自动构建好的 `ChatDACS` 压缩包
 
-4. 解压 `ChatDACS` 压缩包，直接运行 `chatdacs.exe` 就可以启动测试版小夜辣。
+4. 解压 `ChatDACS` 压缩包，直接运行 `chatdacs.exe` 就可以启动测试版小夜辣
 
 ## 🛠 手动编译 Manual Compile
 
@@ -57,9 +61,9 @@
 
 请按如下操作进行手动编译：
 
-1. 首先去 [https://nodejs.org/zh-cn/about/releases/](https://nodejs.org/zh-cn/about/releases/) 下载对应你系统的 Node.js `v14 长期维护版` ，在安装过程中请注意勾选 `Automatically install the necessary tools. Note that this will also install Chocolatey.` 以便自动安装一些必要的工具和编译链。具体安装方法请参考网上教程；
+1. 首先去 [https://nodejs.org/zh-cn/about/releases/](https://nodejs.org/zh-cn/about/releases/) 下载对应你系统的 Node.js `v14 长期维护版` ，在安装过程中请注意勾选 `Automatically install the necessary tools. Note that this will also install Chocolatey.` 以便自动安装一些必要的工具和编译链。具体安装方法请参考网上教程
 
-2. 然后下载小夜最新代码的压缩包 [https://github.com/Giftia/ChatDACS/archive/refs/heads/master.zip](https://github.com/Giftia/ChatDACS/archive/refs/heads/master.zip) ，解压之；
+2. 然后下载小夜最新代码的压缩包 [https://github.com/Giftia/ChatDACS/archive/refs/heads/master.zip](https://github.com/Giftia/ChatDACS/archive/refs/heads/master.zip) ，解压之
 
 3. 打开系统的 `shell` ，也就是泛指的 `命令行` ，如 `CMD(dos)`、`PowerShell(win)`、`Bash(linux)`、`iTerm2(mac)` 等，用 `cd` 命令**进入小夜代码根目录**后，运行：
 

@@ -80,7 +80,7 @@
 | 呆蛙 190888888                     |           60           |                                                                                                                                                                                       |
 
 ---
-## 对本项目提供帮助的致谢名单（排名不分先后）：
+## 对本项目提供过帮助的致谢名单（排名不分先后）：
 
 - [https://niconi.co.ni/](https://niconi.co.ni/)
 - [https://www.layuion.com/](https://www.layuion.com/)
@@ -92,7 +92,6 @@
 - [https://www.maoken.com/](https://www.maoken.com/)
 - [https://uptimerobot.com/](https://uptimerobot.com/)
 - [https://shields.io/](https://shields.io/)
-- [https://ctf.bugku.com/](https://ctf.bugku.com/)
 - [https://hostker.com/](https://hostker.com/)
 - [https://www.tianapi.com/](https://www.tianapi.com/)
 - [https://api.sumt.cn/](https://api.sumt.cn/)
