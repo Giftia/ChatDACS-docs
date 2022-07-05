@@ -1,4 +1,4 @@
-# 使用说明 <Badge text="最新版本 v3.6.0-fix" type="warning"/>
+# 使用说明 <Badge text="最新公开版本 v3.6.0-fix" type="warning"/>
 
 <table width="100%" border="0">
   <tr>
@@ -17,6 +17,10 @@
       一个简单的聊天机器人框架，支持接入多个平台，具备全功能的网页控制台。<br/>
       技术栈：后端 —— Node.js，前端组件库 —— layui。<br/>
       画师：塘 李<br/>
+      <br/>
+      开源地址：<a href="https://github.com/Giftia/ChatDACS">https://github.com/Giftia/ChatDACS</a><br/>
+      示例 DEMO：<a href="http://110.42.221.72/" target="_blank">http://110.42.221.72/</a><br/>
+      语录来自小夜：<a href="https://github.com/Giftia/Project_Xiaoye" target="_blank">github.com/Giftia/Project_Xiaoye</a><br/>
       <p align="center">
         <a href="https://stats.uptimerobot.com/JYr8kI8jqg" target="_blank"><img src="https://img.shields.io/uptimerobot/ratio/m783632550-7da46d24226cb151b978c810?label=%E8%BF%90%E8%A1%8C%E6%83%85%E5%86%B5&style=for-the-badge" alt="Uptime(30 days)" /></a>
         &nbsp;
