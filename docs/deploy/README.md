@@ -49,7 +49,7 @@
 
 1. 首先点击进入小夜的自动构建 → <a href="https://github.com/Giftia/ChatDACS/actions" target="_blank"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/Giftia/ChatDACS/Compile%20ChatDACS%20for%20Windows?label=%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA&style=for-the-badge"></a>
 
-2. 点击最新成功构建的工作流 `Compile ChatDACS for Windows` 或 `Compile ChatDACS for Linux` ，选择哪个取决于你的系统
+2. 点击最新成功构建的一键运行包工作流 `Build ChatDACS One-Click-To-Deploy Package`
 
 3. 在页面下方的制品 `Artifacts` 里点击下载自动构建好的 `ChatDACS` 压缩包
 
