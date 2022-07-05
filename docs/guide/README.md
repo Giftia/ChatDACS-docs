@@ -17,7 +17,9 @@
       一个简单的聊天机器人框架，支持接入多个平台，具备全功能的网页控制台。<br/>
       技术栈：后端 —— Node.js，前端组件库 —— layui。<br/>
       画师：塘 李<br/>
-      <br/>
+    </p>
+    <hr>
+    <p align="center">
       开源地址：<a href="https://github.com/Giftia/ChatDACS">https://github.com/Giftia/ChatDACS</a><br/>
       示例 DEMO：<a href="http://110.42.221.72/" target="_blank">http://110.42.221.72/</a><br/>
       语录来自小夜：<a href="https://github.com/Giftia/Project_Xiaoye" target="_blank">github.com/Giftia/Project_Xiaoye</a><br/>
@@ -35,7 +37,7 @@
     </p>
   </td>
 
-  <td style="width:20%;vertical-align:top;">
+  <td style="width:20%;vertical-align:middle;">
     <img src="https://i.loli.net/2021/08/25/sILl6XREJMDPAmt.png" width="200" alt="stand" />
     <p align="center">
       星野夜蝶 立绘
