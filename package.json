@@ -9,7 +9,7 @@
   },
   "name": "chatdacs-docs",
   "description": "一个简单的机器人框架，支持接入哔哩哔哩直播，具备完全功能的web端控制台。",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Giftia/ChatDACS-docs.git"
@@ -18,5 +18,8 @@
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
+  },
+  "dependencies": {
+    "vuepress-plugin-pixi-live2d-display": "^1.0.1"
   }
 }

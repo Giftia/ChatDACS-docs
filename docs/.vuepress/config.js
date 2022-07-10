@@ -31,6 +31,9 @@ module.exports = {
         hour12: false,
       },
     },
+    'vuepress-plugin-pixi-live2d-display': {
+      model: "http://110.42.221.72/live2d/assets/xiaoye/xiaoye.model3.json",
+    },
   },
   themeConfig: {
     logo: '/favicon.ico',
