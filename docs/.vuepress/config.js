@@ -33,7 +33,18 @@ module.exports = {
     },
     'vuepress-plugin-pixi-live2d-display': {
       model: "/xiaoye/xiaoye.model3.json",
-      offsetX: 1000,
+      delay: 1000,
+      containerStyle: {
+        display: flex,
+        justifyContent: center,
+        alignItems: center,
+        position: fixed,
+        width: '400px',
+        height: '220px',
+        left: '20px',
+        bottom: '20px',
+        zIndex: 0, // 必须设置为小于1，否则如果 live2d 位于右下角时，go to top 会被遮挡
+      },
     },
   },
   themeConfig: {
