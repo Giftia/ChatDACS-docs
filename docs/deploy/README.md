@@ -2,7 +2,7 @@
 
 ## ⚡️ 快速启动 Quick Start
 
-来试试快速启动吧， `1` 键运行， `1` 分钟运行 `1` 个属于自己的小夜：
+来试试小夜的一键运行包吧， `一` 键运行， `一` 分钟运行 `一` 个属于自己的小夜：
 
 1. 首先点击进入 [最新发行包页面](https://github.com/Giftia/ChatDACS/releases/latest)
 
@@ -24,15 +24,17 @@
 :::
 
 ::: tip 提示
-1. 本项目使用了 `ffmpeg` 依赖，用于 `go-cqhttp` 的语音格式转码，为了减小发行包体积，发行包内并没有内置 `ffmpeg`。故请自行下载 `ffmpeg.exe` 并放置于 `/plugins/go-cqhttp/` 文件夹下。下载地址：[https://giftia.lanzouf.com/ir05s05q67bg](https://giftia.lanzouf.com/ir05s05q67bg)，若链接失效，请移步QQ群 `120243247` 群共享自取。如果您不需要 QQ 端发送语音，可以无视本步骤。
+1. 小夜一键运行包目前支持 `Windows 64位` 、 `Linux 64位` 系统，如果您的系统不支持一键运行包，请呼叫开发组申请增加对应系统平台的一键运行包，或移步下方 手动编译 章节查看如何进行自行编译。
 
-2. 建议使用注册时间久一些的 QQ 号作为小夜号登陆使用，不容易被封号。因为新号很容易因为疼讯检测到的突然频繁发言而被风控。
+2. 本项目使用了 `ffmpeg` 依赖，用于 `go-cqhttp` 的语音格式转码，为了减小发行包体积，发行包内并没有内置 `ffmpeg`。故请自行下载 `ffmpeg.exe` 并放置于 `/plugins/go-cqhttp/` 文件夹下。下载地址：[https://giftia.lanzouf.com/ir05s05q67bg](https://giftia.lanzouf.com/ir05s05q67bg)，若链接失效，请移步QQ群 `120243247` 群共享自取。如果您不需要 QQ 端发送语音，可以无视本步骤。
 
-3. 如果想要切换小夜使用的 QQ 账号，请先关闭两个程序窗口，进入 `plugins` 文件夹里的 `go-cqhttp` 文件夹，删除 `device.json` 和 `session.token` 这两个文件，随后启动 `chatdacs.exe` 即可重新扫码登陆。
+3. 建议使用注册时间久一些的 QQ 号作为小夜号登陆使用，不容易被封号。因为新号很容易因为疼讯检测到的突然频繁发言而被风控。
 
-4. 若想跳过 QQ 扫码登陆，保持 QQ 持久化登录，请先关闭两个程序窗口，请进入 `plugins` 文件夹里的 `go-cqhttp` 文件夹，修改第 4、5 行的 uin 和 password 为 QQ 账号和密码，以后的启动都会保持 QQ 登陆。
+4. 如果想要切换小夜使用的 QQ 账号，请先关闭两个程序窗口，进入 `plugins` 文件夹里的 `go-cqhttp` 文件夹，删除 `device.json` 和 `session.token` 这两个文件，随后启动 `chatdacs.exe` 即可重新扫码登陆。
 
-5. 若不想使用某些插件功能，如色图功能，请直接删除 `plugins` 文件夹里的对应插件，并重启小夜。也可以把插件的文件后缀名 `.js` 改为别的。
+5. 若想跳过 QQ 扫码登陆，保持 QQ 持久化登录，请先关闭两个程序窗口，请进入 `plugins` 文件夹里的 `go-cqhttp` 文件夹，修改第 4、5 行的 uin 和 password 为 QQ 账号和密码，以后的启动都会保持 QQ 登陆。
+
+6. 若不想使用某些插件功能，如色图功能，请直接删除 `plugins` 文件夹里的对应插件，并重启小夜。也可以把插件的文件后缀名 `.js` 改为别的。
 :::
 
 ## 🐋 使用 Docker 部署 Deploy With Docker
@@ -59,15 +61,15 @@
 
 ### 手动编译流程需要一定的编码和 debug 基础，不建议新手操作
 
-如果自动化部署工作流 `Actions` 年久失修，没有更新，
+如果小夜的自动构建 <a href="https://github.com/Giftia/ChatDACS/actions/workflows/build.yml" target="_blank"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/Giftia/ChatDACS/Build%20ChatDACS%20One-Click-To-Deploy%20Package%20(ChatDACS%E4%B8%80%E9%94%AE%E8%BF%90%E8%A1%8C%E5%8C%85%E6%9E%84%E5%BB%BA)?label=%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA&logo=node.js&style=for-the-badge" alt="Workflow" /></a> 年久失修，一直失败，没有更新，
 
-若您的操作系统和架构并不是常见的 Windows OS x64，
+或是您的操作系统或 CPU 架构并不是常见的 `Windows 64位` 、 `Ubuntu 64位` 等等，
 
-或者是在快速启动、部署过程出现了错误，
+或者是在快速启动、部署过程出现了无法解决的错误，
 
-亦或者是想要了解小夜背后的 Node.js 与 一系列构建工具 是如何构建出小夜的，
+亦或者您是想要了解小夜背后的 `Node.js` 与 `一系列构建流程` 是如何构建出小夜的，
 
-请按如下操作进行手动编译：
+没有问题，请按如下操作进行手动编译操作：
 
 1. 首先去 [https://nodejs.org/zh-cn/about/releases/](https://nodejs.org/zh-cn/about/releases/) 下载对应你系统的 Node.js `v14 长期维护版` ，在安装过程中请注意勾选 `Automatically install the necessary tools. Note that this will also install Chocolatey.` 以便自动安装一些必要的工具和编译链。具体安装方法请参考网上教程
 
@@ -99,9 +101,7 @@ cnpm ci
 node index.js
 ```
 
-好了，小夜应该已经启动了 🎉。更详细的部署和配置说明请查看 `index.js` 文件。插件位于 `plugins` 文件夹。
-
-如果想要手动生成适合您的系统的可执行文件，可以**进入小夜代码根目录**后使用手动打包指令：
+好了，小夜应该已经启动了 🎉。确认小夜运行无误后，是时候该生成适合您的系统的可执行文件了，**进入小夜代码根目录**后使用手动打包指令：
 
 ```bash
 cnpm install pkg -g
