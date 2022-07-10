@@ -39,11 +39,11 @@ module.exports = {
         'justify-content': 'center',
         'align-items': 'center',
         'position': 'fixed',
-        'width': '400px',
+        'width': '220px',
         'height': '400px',
         'left': '20px',
         'bottom': '20px',
-        'z-index': 0, // https://github.com/mizuka-wu/vuepress-plugin-pixi-live2d-display/pull/1
+        'z-index': 11, // https://github.com/mizuka-wu/vuepress-plugin-pixi-live2d-display/pull/1
       },
     },
   },
