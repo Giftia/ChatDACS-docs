@@ -33,6 +33,7 @@ module.exports = {
     },
     'vuepress-plugin-pixi-live2d-display': {
       model: "/xiaoye/xiaoye.model3.json",
+      offsetX: 1000,
     },
   },
   themeConfig: {
