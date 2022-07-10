@@ -32,7 +32,7 @@ module.exports = {
       },
     },
     'vuepress-plugin-pixi-live2d-display': {
-      model: "http://110.42.221.72/live2d/assets/xiaoye/xiaoye.model3.json",
+      model: "/xiaoye/xiaoye.model3.json",
     },
   },
   themeConfig: {
