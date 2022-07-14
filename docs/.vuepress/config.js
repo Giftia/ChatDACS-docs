@@ -56,11 +56,11 @@ module.exports = {
     docsDir: 'docs',
     docsBranch: 'main',
     editLinks: true,
-    editLinkText: '帮助完善此页面',
+    editLinkText: '帮助我们完善此页面',
     smoothScroll: true,
     sidebar: 'auto',
     displayAllHeaders: true,
-    backToHome: "返回首页",
+    backToHome: "返回主页",
     activeHeaderLinks: true,
     contributors: true,
     nav: [
