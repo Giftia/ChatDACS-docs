@@ -12,7 +12,7 @@
 对于大多数情况而言，其实并不需要申请频道官方的机器人账号，无需再配置单独接入 QQ 频道。
 
 `QQ频道机器人账号` 和 `普通成员账号` 的一眼区别见下图。`QQ频道机器人账号` 有更高的权限，以及机器人标识和相关功能的体现。
-<img :src="$withBase('/about_guild_bot_and_guild_user.jpg')" alt="关于QQ频道机器人账号和普通成员账号的区别">
+<img :src="$withBase('/static/about_guild_bot_and_guild_user.jpg')" alt="关于QQ频道机器人账号和普通成员账号的区别">
 :::
 
 ## 第一步 创建 QQ 频道机器人账号

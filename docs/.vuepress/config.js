@@ -8,7 +8,7 @@ module.exports = {
   },
   base: '/',
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', href: '/static/favicon.ico' }],
   ],
   plugins: {
     '@vuepress/back-to-top': {},
@@ -32,7 +32,7 @@ module.exports = {
       },
     },
     'vuepress-plugin-pixi-live2d-display': {
-      model: "/xiaoye/xiaoye.model3.json",
+      model: "/static/xiaoye/xiaoye.model3.json",
       delay: 1000,
       containerStyle: {
         'display': 'flex',
@@ -42,13 +42,13 @@ module.exports = {
         'width': '220px',
         'height': '400px',
         'left': '20px',
-        'bottom': '20px',
+        'bottom': '0px',
         'z-index': 11, // https://github.com/mizuka-wu/vuepress-plugin-pixi-live2d-display/pull/1
       },
     },
   },
   themeConfig: {
-    logo: '/favicon.ico',
+    logo: '/static/favicon.ico',
     repo: 'Giftia/ChatDACS',
     docsRepo: 'Giftia/ChatDACS-docs',
     repoLabel: '查看源码',

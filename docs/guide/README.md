@@ -4,7 +4,7 @@
   <tr>
   <td style="width:80%;vertical-align:top;">
     <h1 align="center">
-      <img src="/heroImage.jpg" width="200" height="200" alt="ChatDACS"/><br/>
+      <img src="/static/heroImage.jpg" width="200" height="200" alt="ChatDACS"/><br/>
       星野夜蝶<br/>
       Hoshino Yedie<br/>
     </h1>

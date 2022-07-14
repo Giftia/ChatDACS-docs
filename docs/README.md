@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /heroImage.jpg
+heroImage: /static/heroImage.jpg
 heroText: 星野夜蝶
 subText: Hoshino Yedie
 tagline: 一个简单的聊天机器人框架，支持接入多个平台，具备全功能的网页控制台
@@ -21,7 +21,7 @@ title: 星野夜蝶 使用文档
 description: 一个简单的聊天机器人框架，支持接入多个平台，具备全功能的网页控制台
 meta:
   - name: keywords
-    content: 星野夜蝶, 小夜, Giftia, Giftina, ChatDACS
+    content: 星野夜蝶,小夜,Giftia,Giftina,ChatDACS
   - name: baidu-site-verification
     content: code-NQKKlgpSrz
 ---
