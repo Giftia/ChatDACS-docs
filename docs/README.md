@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://repository-images.githubusercontent.com/171253757/27be1b16-8dbb-41ba-90b5-4b28157f3def
+heroImage: /heroImage.jpg
 heroText: 星野夜蝶
 subText: Hoshino Yedie
 tagline: 一个简单的聊天机器人框架，支持接入多个平台，具备全功能的网页控制台
