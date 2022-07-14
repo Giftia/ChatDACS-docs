@@ -20,6 +20,6 @@
     "docs:build": "vuepress build docs"
   },
   "dependencies": {
-    "vuepress-plugin-pixi-live2d-display": "^1.0.1"
+    "vuepress-plugin-pixi-live2d-display": "1.0.1"
   }
 }
