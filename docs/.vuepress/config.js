@@ -33,7 +33,7 @@ module.exports = {
     },
     'vuepress-plugin-pixi-live2d-display': {
       model: "/static/xiaoye/xiaoye.model3.json",
-      delay: 1000,
+      delay: 2000,
       containerStyle: {
         'display': 'flex',
         'justify-content': 'center',
