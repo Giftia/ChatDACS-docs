@@ -83,6 +83,7 @@
 
 效果示意：
 
+
 <img :src="$withBase('/static/avgPainter.jpg')" alt="插件效果示意">
 :::
 
@@ -96,6 +97,7 @@
 使用例：`说不出话 v我50`
 
 效果示意：
+
 <img :src="$withBase('/static/perfunctoryTeach.jpg')" alt="插件效果示意">
 :::
 
@@ -109,6 +111,7 @@
 使用例：`推送我晚上要手冲`
 
 效果示意：
+
 <img :src="$withBase('/static/chatPush.jpg')" alt="插件效果示意">
 :::
 
@@ -122,6 +125,7 @@
 使用例：`问：HELLO 答：WORLD`
 
 效果示意：
+
 <img :src="$withBase('/static/chatTeach.jpg')" alt="插件效果示意">
 :::
 
@@ -135,6 +139,7 @@
 使用例：`cos图`
 
 效果示意：
+
 <img :src="$withBase('/static/cos.jpg')" alt="插件效果示意">
 :::
 
@@ -148,6 +153,7 @@
 使用例：`cp 小夜 小雫`
 
 效果示意：
+
 <img :src="$withBase('/static/cp.jpg')" alt="插件效果示意">
 :::
 
@@ -161,6 +167,7 @@
 使用例：`认清一个失败的人生，源自于我发现无论发多少条肯德基疯狂星期四文案，都不会有人请我吃的瞬间。`
 
 效果示意：
+
 <img :src="$withBase('/static/crazyThursday.jpg')" alt="插件效果示意">
 :::
 
@@ -174,6 +181,7 @@
 使用例：`赛博朋克`
 
 效果示意：
+
 <img :src="$withBase('/static/cyberPedia.jpg')" alt="插件效果示意">
 :::
 
@@ -187,6 +195,7 @@
 使用例：`个人信息`
 
 效果示意：
+
 <img :src="$withBase('/static/danceCube1.jpg')" alt="插件效果示意">
 
 <img :src="$withBase('/static/danceCube2.jpg')" alt="插件效果示意">
@@ -202,6 +211,7 @@
 使用例：`名场面 不能逃避`
 
 效果示意：
+
 <img :src="$withBase('/static/dialogue.jpg')" alt="插件效果示意">
 :::
 
@@ -215,6 +225,7 @@
 使用例：`报错 对象不存在`
 
 效果示意：
+
 <img :src="$withBase('/static/feedback1.jpg')" alt="插件效果示意">
 
 小夜开发组群内效果：
@@ -231,6 +242,7 @@
 使用例：`最新本子`
 
 效果示意：
+
 <img :src="$withBase('/static/getNewestFeed.jpg')" alt="插件效果示意">
 :::
 
@@ -244,6 +256,7 @@
 使用例：`黑白图 当你凝望神圣手雷的时候，神圣手雷也在凝望你 あなたが神圣手雷を見つめるとき、神圣手雷もあなたを見つめています[图片]`
 
 效果示意：
+
 <img :src="$withBase('/static/grassPictureGenerate.jpg')" alt="插件效果示意">
 :::
 
@@ -257,6 +270,7 @@
 使用例：`帮助`
 
 效果示意：
+
 <img :src="$withBase('/static/help.jpg')" alt="插件效果示意">
 :::
 
@@ -270,6 +284,7 @@
 使用例：`人生重开`
 
 效果示意：
+
 <img :src="$withBase('/static/lifeRestart.jpg')" alt="插件效果示意">
 :::
 
@@ -283,6 +298,7 @@
 使用例：`今天不带套`
 
 效果示意：
+
 <img :src="$withBase('/static/noCondom.jpg')" alt="插件效果示意">
 :::
 
@@ -296,6 +312,7 @@
 使用例：`猫语 喵~`
 
 效果示意：
+
 <img :src="$withBase('/static/nyaTranslate.jpg')" alt="插件效果示意">
 :::
 
@@ -309,6 +326,7 @@
 使用例：`/ping`
 
 效果示意：
+
 <img :src="$withBase('/static/ping.jpg')" alt="插件效果示意">
 :::
 
@@ -322,6 +340,7 @@
 使用例：`迫害 上原步梦 是我，是我先，明明都是我先来的……接吻也好，拥抱也好，还是喜欢上那家伙也好。`
 
 效果示意：
+
 <img :src="$withBase('/static/poHaiGenerate.jpg')" alt="插件效果示意">
 :::
 
@@ -335,6 +354,7 @@
 使用例：`prpr 嘉然`
 
 效果示意：
+
 <img :src="$withBase('/static/prpr.jpg')" alt="插件效果示意">
 :::
 
@@ -348,6 +368,7 @@
 使用例：`qr 114514`
 
 效果示意：
+
 <img :src="$withBase('/static/qr.jpg')" alt="插件效果示意">
 :::
 
@@ -361,6 +382,7 @@
 使用例：`可以色色`
 
 效果示意：
+
 
 ……这个请自己尝试！
 :::
@@ -376,6 +398,7 @@
 
 效果示意：
 
+
 ……这个请自己尝试！
 :::
 
@@ -389,6 +412,7 @@
 使用例：`让我康康`
 
 效果示意：
+
 
 ……这个请自己尝试！
 :::
@@ -404,6 +428,7 @@
 
 效果示意：
 
+
 ……这个请自己尝试！
 :::
 
@@ -417,6 +442,7 @@
 使用例：`[当某条消息重复了2次]`
 
 效果示意：
+
 <img :src="$withBase('/static/repeat.jpg')" alt="插件效果示意">
 :::
 
@@ -430,6 +456,7 @@
 使用例：`roll`
 
 效果示意：
+
 <img :src="$withBase('/static/roll.jpg')" alt="插件效果示意">
 :::
 
@@ -443,6 +470,7 @@
 使用例：`提醒我待会要手冲`
 
 效果示意：
+
 <img :src="$withBase('/static/schedule.jpg')" alt="插件效果示意">
 :::
 
@@ -457,6 +485,7 @@
 
 效果示意：
 
+
 ……这个请自己尝试！
 :::
 
@@ -470,6 +499,7 @@
 使用例：`系统状态`
 
 效果示意：
+
 <img :src="$withBase('/static/status.jpg')" alt="插件效果示意">
 :::
 
@@ -484,6 +514,7 @@
 
 效果示意：
 
+
 ……这个请自己尝试！
 :::
 
@@ -497,6 +528,7 @@
 使用例：`弹窗 您可能是盗版软件的受害者`
 
 效果示意：
+
 <img :src="$withBase('/static/tray.jpg')" alt="插件效果示意">
 :::
 
@@ -510,6 +542,7 @@
 使用例：`吠 太好听了吧啊，你唱歌真的好嗷好听啊，简直就是天岸籁，我刚才听到你唱歌了，我们以后一起唱好不好，一起唱昂，一起做学园偶像昂`
 
 效果示意：
+
 <img :src="$withBase('/static/tts.jpg')" alt="插件效果示意">
 :::
 
@@ -523,6 +556,7 @@
 使用例：`今日老婆`
 
 效果示意：
+
 <img :src="$withBase('/static/waifuToday.jpg')" alt="插件效果示意">
 :::
 
@@ -534,6 +568,7 @@
 使用例：`闭菊`
 
 效果示意：
+
 <img :src="$withBase('/static/serviceSwitch.jpg')" alt="功能效果示意">
 :::
 
@@ -545,6 +580,7 @@
 使用例：`[戳一戳小夜]`
 
 效果示意：
+
 <img :src="$withBase('/static/poke.jpg')" alt="功能效果示意">
 :::
 
@@ -556,6 +592,7 @@
 使用例：`孤寡 @Giftina`
 
 效果示意：
+
 <img :src="$withBase('/static/guGua.jpg')" alt="功能效果示意">
 :::
 
@@ -567,6 +604,7 @@
 使用例：`我有个朋友说我好了@Giftina`
 
 效果示意：
+
 <img :src="$withBase('/static/myFriendSays.jpg')" alt="功能效果示意">
 :::
 
@@ -578,6 +616,7 @@
 使用例：`强制迫害 (@对象) (说了什么) (小夜说了什么)`
 
 效果示意：
+
 <img :src="$withBase('/static/fakeForward.jpg')" alt="功能效果示意">
 :::
 
@@ -589,6 +628,7 @@
 使用例：`[对某个消息回复复读]`
 
 效果示意：
+
 <img :src="$withBase('/static/fudu.jpg')" alt="功能效果示意">
 :::
 
@@ -600,6 +640,7 @@
 使用例：`埋地雷`
 
 效果示意：
+
 <img :src="$withBase('/static/setMine.jpg')" alt="功能效果示意">
 :::
 
@@ -611,6 +652,7 @@
 使用例：`踩地雷`
 
 效果示意：
+
 <img :src="$withBase('/static/stepOnAMine.jpg')" alt="功能效果示意">
 :::
 
@@ -622,6 +664,7 @@
 使用例：`一个手雷 @被害者`
 
 效果示意：
+
 <img :src="$withBase('/static/handGrenade.jpg')" alt="功能效果示意">
 
 神圣手雷：
@@ -636,6 +679,7 @@
 使用例：`希望的花 @希望目标`
 
 效果示意：
+
 <img :src="$withBase('/static/flowerOfHope.jpg')" alt="功能效果示意">
 :::
 
@@ -647,5 +691,6 @@
 使用例：`击鼓传雷`
 
 效果示意：
+
 <img :src="$withBase('/static/loopBomb.jpg')" alt="功能效果示意">
 :::

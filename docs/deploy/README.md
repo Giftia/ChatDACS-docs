@@ -2,15 +2,15 @@
 
 ## ⚡️ 快速启动 Quick Start
 
-来试试小夜的一键运行包吧， `一` 键运行， `一` 分钟运行 `一` 个属于自己的小夜：
+来试试小夜的一键运行包吧，无需任何配置，一键运行，一分钟运行一个属于自己的小夜：
 
-1. 首先点击进入 [最新发行包页面](https://github.com/Giftia/ChatDACS/releases/latest)
+1. 首先点击进入 [小夜的最新发行包页面](https://github.com/Giftia/ChatDACS/releases/latest)
 
-2. 在页面下方的资产 `Assets` 里点击下载适合您系统的压缩包 `ChatDACS-vX.X.X_系统.zip` 压缩包
+2. 在页面下方的资产 `Assets` 里点击下载适合您系统的压缩包 `ChatDACS-vX.X.X_系统.zip`
 
 3. 解压 `ChatDACS-vX.X.X_系统.zip` 压缩包，注意文件路径不得存在非 ASCII 字符
 
-4. 直接运行文件夹里的 `chatdacs.exe` 就可以辣，按提示用 QQ 扫描二维码即可登陆 QQ
+4. 直接运行文件夹里的 `chatdacs.exe` 就可以辣，按提示用 QQ 扫描二维码即可登陆 QQ。若提示需要滑条验证码，请按提示操作进行验证操作。
 
 如果在操作过程中有任何问题的话，请进 QQ 群 `120243247` 来问问题吧，有问必答噢。
 
@@ -39,7 +39,7 @@
 
 ## 🐋 使用 Docker 部署 Deploy With Docker
 
-现在小夜也可以使用 Docker 部署了！~~群晖用户大喜~~
+对于一键运行包不能运行的系统，小夜也可以使用 Docker 部署！~~群晖用户大喜~~
 
 小夜的 Docker 镜像地址是：[https://hub.docker.com/repository/docker/giftina/chatdacs](https://hub.docker.com/repository/docker/giftina/chatdacs)
 
@@ -47,7 +47,7 @@
 
 ## 🆕 尝试最新测试版 Try Latest Beta Version
 
-想要试试最新的功能吗，请试试看最新测试版吧：
+一键运行包满足不了你，想要试试最新的功能吗，那就请试试看最新测试版吧：
 
 1. 首先点击进入小夜的自动构建 → <a href="https://github.com/Giftia/ChatDACS/actions/workflows/build.yml" target="_blank"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/Giftia/ChatDACS/Build%20ChatDACS%20One-Click-To-Deploy%20Package%20(ChatDACS%E4%B8%80%E9%94%AE%E8%BF%90%E8%A1%8C%E5%8C%85%E6%9E%84%E5%BB%BA)?label=%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA&logo=node.js&style=for-the-badge" alt="Workflow" /></a>
 
@@ -60,6 +60,8 @@
 ## 🛠 手动编译 Manual Compile
 
 ### 手动编译流程需要一定的编码和 debug 基础，不建议新手操作
+
+如果小夜的一键运行包已经失效，维护者已经失踪，
 
 如果小夜的自动构建 <a href="https://github.com/Giftia/ChatDACS/actions/workflows/build.yml" target="_blank"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/Giftia/ChatDACS/Build%20ChatDACS%20One-Click-To-Deploy%20Package%20(ChatDACS%E4%B8%80%E9%94%AE%E8%BF%90%E8%A1%8C%E5%8C%85%E6%9E%84%E5%BB%BA)?label=%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA&logo=node.js&style=for-the-badge" alt="Workflow" /></a> 年久失修，一直失败，没有更新，
 
