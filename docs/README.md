@@ -9,11 +9,11 @@ actionLink: /guide/
 
 features:
   - title: 完善的 web 端聊天界面
-    details: 良好的交互体验，与经过 2w+ 用户调教养成的人工智能机器人小夜实时聊天；具备全功能的网页控制台，任意子平台离线仍保有网页端在线，不影响使用
-  - title: 简单好用的插件系统
-    details: 二次开发门槛低，有完善的使用说明以及开发指导(准备中)。插件社区生态初具雏形，使用方便。
+    details: 良好的交互体验，与经过 2w+ 用户调教养成的人工智能机器人小夜实时聊天；具备全功能的网页控制台，任意子平台离线仍保有网页端在线，不影响使用。
+  - title: 非常简单地一键部署小夜
+    details: 无需任何配置，一键运行，一分钟运行一个属于自己的小夜。插件二次开发门槛低，有完善的使用说明以及开发指导(准备中)。
   - title: 不仅仅是 QQ 机器人
-    details: 还支持接入哔哩哔哩直播间、QQ频道、Telegram(开发中)、哔哩哔哩弹幕互动游戏(开发中)等其他平台
+    details: 还支持接入哔哩哔哩直播间、QQ频道、Telegram(开发中)、哔哩哔哩弹幕互动游戏(开发中)、DoDo渡渡语音(开发中)等其他平台。
 
 footer: CC-BY-SA-4.0 Licensed | Copyright © 2022-Present Giftina | Powered by VuePress
 
@@ -21,7 +21,7 @@ title: 星野夜蝶 使用文档
 description: 一个简单的聊天机器人框架，支持接入多个平台，具备全功能的网页控制台
 meta:
   - name: keywords
-    content: 星野夜蝶,小夜,Giftia,Giftina,ChatDACS
+    content: 星野夜蝶,小夜,ChatDACS,Hoshino Yedie,Giftia,Giftina
   - name: baidu-site-verification
     content: code-NQKKlgpSrz
 ---
