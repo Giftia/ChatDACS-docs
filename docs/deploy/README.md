@@ -8,9 +8,15 @@
 
 2. 在页面下方的资产 `Assets` 里点击下载适合您系统的压缩包 `ChatDACS-vX.X.X_系统.zip`
 
+<img :src="$withBase('/static/run-step1.jpg')" alt="步骤1">
+
 3. 解压 `ChatDACS-vX.X.X_系统.zip` 压缩包，注意文件路径不得存在非 ASCII 字符
 
-4. 直接运行文件夹里的 `chatdacs.exe` 就可以辣，按提示用 QQ 扫描二维码即可登陆 QQ。若提示需要滑条验证码，请按提示操作进行验证操作。
+<img :src="$withBase('/static/run-step2.jpg')" alt="步骤2">
+
+4. 直接运行文件夹里的 `chatdacs.exe` 就可以辣。运行后将会弹出两个窗口，一个是小夜后台窗口，一个是 QQ 登陆窗口，两个都不可关闭，关闭会导致小夜失联。按 qq 登陆窗口提示用 QQ 扫描二维码即可登陆 QQ。若提示需要滑条验证码，请按提示操作进行验证操作。
+
+<img :src="$withBase('/static/run-step3.jpg')" alt="步骤3">
 
 如果在操作过程中有任何问题的话，请进 QQ 群 `120243247` 来问问题吧，有问必答噢。
 
