@@ -26,6 +26,10 @@ meta:
     content: code-NQKKlgpSrz
 ---
 
+## 开发状态板 Develop Status Board
+
+<iframe id="iframe" class="iframe" src="https://github.com/users/Giftia/projects/1" width="100%" height="800px" frameborder=0 scrolling="no"></iframe>
+
 ## 💬 留言板 Message Board
 ::: tip 留言板
 更多功能咕咕咕增添中，如果你希望小夜再加一些什么有趣的功能，亦或是想要留言表达对小夜的喜爱，欢迎在下方留言板留言，开发组会在每天晚上处理并回复留言板的内容。
