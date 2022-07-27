@@ -47,7 +47,7 @@
 
 ## 🐋 使用 Docker 部署 Deploy With Docker
 
-对于一键运行包不能运行的系统，小夜也可以使用 Docker 部署！~~群晖用户大喜~~
+对于一键运行包不适配的系统，小夜也可以使用 Docker 部署！~~群晖用户大喜~~
 
 小夜的 Docker 镜像地址是：[https://hub.docker.com/repository/docker/giftina/chatdacs](https://hub.docker.com/repository/docker/giftina/chatdacs)
 
@@ -55,7 +55,7 @@
 
 ## 🆕 尝试最新测试版 Try Latest Beta Version
 
-一键运行包满足不了你，想要试试最新的功能吗，那就请试试看最新测试版吧：
+最新测试版一般都会 `修复上个版本的问题`、`增加一些新功能` ，会在完善稳定之后发布为下个版本。如果你对小夜最新的一键运行包不满意的话，那就请试试看最新测试版吧：
 
 1. 首先点击进入小夜的自动构建 → <a href="https://github.com/Giftia/ChatDACS/actions/workflows/build.yml" target="_blank"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/Giftia/ChatDACS/Build%20ChatDACS%20One-Click-To-Deploy%20Package%20(ChatDACS%E4%B8%80%E9%94%AE%E8%BF%90%E8%A1%8C%E5%8C%85%E6%9E%84%E5%BB%BA)?label=%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA&logo=node.js&style=for-the-badge" alt="Workflow" /></a>
 
