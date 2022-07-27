@@ -71,6 +71,7 @@ module.exports = {
       { text: 'QQ频道机器人接入', link: '/qqGuild/' },
       { text: '插件开发指北', link: '/plugins/' },
       { text: '特别感谢', link: '/thanks/' },
+      { text: '开发计划看板', link: 'https://github.com/users/Giftia/projects/1' },
     ]
   },
   markdown: {
