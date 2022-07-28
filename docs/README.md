@@ -15,7 +15,7 @@ features:
   - title: 不仅仅是 QQ 机器人
     details: 还支持接入哔哩哔哩直播间、QQ频道、Telegram(开发中)、哔哩哔哩弹幕互动游戏(开发中)、DoDo渡渡语音(开发中)等其他平台。
 
-footer: CC-BY-SA-4.0 Licensed | Copyright © 2022-Present Giftina | Powered by VuePress
+footer: ChatDACS 是由独立开发者 Giftina 开发与维护的 (GNU) 自由开源软件，采用 GPL v3 开源协议，同时发布于 Github 及 Gitee 。 | CC-BY-SA-4.0 Licensed | Copyright © 2022-Present Giftina | Powered by VuePress
 
 title: 星野夜蝶 使用文档
 description: 一个简单的聊天机器人框架，支持接入多个平台，具备全功能的网页控制台

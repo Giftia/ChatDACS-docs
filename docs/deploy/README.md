@@ -43,6 +43,8 @@
 5. 若想跳过 QQ 扫码登陆，保持 QQ 持久化登录，请先关闭两个程序窗口，请进入 `plugins` 文件夹里的 `go-cqhttp` 文件夹，修改第 4、5 行的 uin 和 password 为 QQ 账号和密码，以后的启动都会保持 QQ 登陆。
 
 6. 若不想使用某些插件功能，如色图功能，请直接删除 `plugins` 文件夹里的对应插件，并重启小夜。也可以把插件的文件后缀名 `.js` 改为别的。
+
+7. 如果在启动过程中无限检查更新报错 `Error: unable to verify the first certificate` ，请检查是否开启了代理软件，如 `steam++` ，由于证书校验的原因，需要关闭代理软件，小夜才可以检查更新。
 :::
 
 ## 🐋 使用 Docker 部署 Deploy With Docker
