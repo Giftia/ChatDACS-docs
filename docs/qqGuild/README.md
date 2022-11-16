@@ -31,8 +31,8 @@
 
 ## 第三步 配置机器人服务
 
-打开 `config` 文件夹内的 `config.yml` 配置文件，打开 **接入QQ频道开关** `CONNECT_QQ_GUILD_SWITCH`，将从 QQ 开放平台 获取的`BotAppID` 和 `BotToken` 填入配置文件中的对应配置项 `QQ_GUILD_APP_ID` 和 `QQ_GUILD_TOKEN`，保存文件。
+打开 `config` 文件夹内的 `config.yml` 配置文件，打开 **接入QQ频道开关** `CONNECT_QQ_GUILD_SWITCH`，将从 QQ 开放平台 获取的 `BotAppID` 和 `BotToken` 填入配置文件中的对应配置项 `QQ_GUILD_APP_ID` 和 `QQ_GUILD_TOKEN`，然后保存文件。
 
 ## 第四步 测试功能
 
-启动 `chatdacs`，应该会显示 `小夜QQ频道开启`，以及成功连接 QQ 频道接口的响应。将机器人拉入你自己的测试频道即可测试功能。
+启动 `chatdacs`，应该会显示 `小夜QQ频道接入开启`，以及成功连接 QQ 频道接口的响应。将机器人拉入你自己的测试频道即可测试功能。

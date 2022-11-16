@@ -69,6 +69,7 @@ module.exports = {
       { text: '部署说明', link: '/deploy/' },
       { text: '哔哩哔哩接入', link: '/bilibili/' },
       { text: 'QQ频道机器人接入', link: '/qqGuild/' },
+      { text: 'Telegram机器人接入', link: '/telegram/' },
       { text: '插件开发指北', link: '/plugins/' },
       { text: '特别感谢', link: '/thanks/' },
       { text: '开发计划看板', link: 'https://github.com/users/Giftia/projects/1' },
