@@ -1,7 +1,7 @@
 # 如何接入 Telegram 机器人 <Badge text="注意" type="error"/>
 
 ::: danger 注意
-需要良好的网络环境。
+一般而言，`Telegram Api` 需要在良好的网络环境下方可接入。但经 po 主测试，只要 `Telegram Api` 没有被 dns 污染的话，是可以直连的。
 :::
 
 ## 第一步 创建机器人账号
@@ -14,7 +14,7 @@
 
 ## 第二步 配置机器人服务
 
-打开 `config` 文件夹内的 `config.yml` 配置文件，打开 **接入Telegram开关** `CONNECT_TELEGRAM_SWITCH`，将从 @BotFather 获取的 `token` 填入配置文件中的对应配置项 `TELEGRAM_BOT_TOKEN` ，然后保存文件。
+打开 `config` 文件夹内的 `config.yml` 配置文件，打开 **接入Telegram开关** `CONNECT_TELEGRAM_SWITCH`，将从 @BotFather 获取的 `token` 填入配置文件中的对应配置项 `TELEGRAM_BOT_TOKEN`，然后保存文件。
 
 ## 第三步 测试功能
 
