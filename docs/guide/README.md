@@ -1,4 +1,4 @@
-# 使用说明 <Badge text="最新公开版本 v3.7.0" type="warning"/>
+# 使用说明 <Badge text="最新公开版本 v3.7.1" type="warning"/>
 
 <table width="100%" border="0">
   <tr>
@@ -496,7 +496,7 @@
 
 ---
 
-::: tip 系统配置查询插件 v2.3
+::: tip 系统配置查询插件 v2.4
 插件文件名：`status.js`，作者：Giftina
 
 介绍：查询小夜的相关运行信息。
@@ -525,7 +525,7 @@
 
 ---
 
-::: tip 状态栏提示插件 v2.3
+::: tip 状态栏提示插件 v2.4
 插件文件名：`tray.js`，作者：Giftina
 
 介绍：自动在任务栏显示一个常驻托盘，仅在Windows系统下有效。弹窗指令会在小夜宿主电脑上弹出一条消息通知。
@@ -553,16 +553,16 @@
 
 ---
 
-::: tip 今日老婆插件 v1.3
-插件文件名：`waifuToday.js`，作者：Giftina
+::: tip 壁纸插件 v1.0
+插件文件名：`wallpaper.js`，作者：Giftina
 
-介绍：仅在qq端生效。将随机一名群友和你组成一对cp。
+介绍：2022年圣诞节彩蛋，可以给小夜的宿主设置一张指定的壁纸。
 
-使用例：`今日老婆`
+使用例：`设置壁纸 [图片]`
 
 效果示意：
 
-<img :src="$withBase('/static/waifuToday.jpg')" alt="插件效果示意">
+<img :src="$withBase('/static/wallpaperPlugins.jpg')" alt="插件效果示意">
 :::
 
 ### QQ端 独占的功能
@@ -635,6 +635,20 @@
 效果示意：
 
 <img :src="$withBase('/static/fudu.jpg')" alt="功能效果示意">
+:::
+
+---
+
+::: tip 今日老婆插件 v1.3
+插件文件名：`waifuToday.js`，作者：Giftina
+
+介绍：将随机一名群友和你组成一对cp。
+
+使用例：`今日老婆`
+
+效果示意：
+
+<img :src="$withBase('/static/waifuToday.jpg')" alt="插件效果示意">
 :::
 
 ### QQ 地 雷 战（需小夜是 QQ 群管理时有效）
