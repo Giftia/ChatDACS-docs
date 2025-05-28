@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>如何接入 Telegram 机器人 | 星野夜蝶 使用文档</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/static/favicon.ico">
+    <meta name="description" content="一个简单的机器人框架，支持接入哔哩哔哩直播，具备完全功能的web端控制台。">
+    
+    <link rel="preload" href="/assets/css/0.styles.6a1f76d8.css" as="style"><link rel="preload" href="/assets/js/app.2dfdd553.js" as="script"><link rel="preload" href="/assets/js/2.20dc188e.js" as="script"><link rel="preload" href="/assets/js/15.21c258d9.js" as="script"><link rel="preload" href="/assets/js/4.be7e55f8.js" as="script"><link rel="preload" href="/assets/js/3.1a8f7b58.js" as="script"><link rel="prefetch" href="/assets/js/10.17f682ff.js"><link rel="prefetch" href="/assets/js/11.e3b9eb81.js"><link rel="prefetch" href="/assets/js/12.d762acf8.js"><link rel="prefetch" href="/assets/js/13.05b01d29.js"><link rel="prefetch" href="/assets/js/14.879a0956.js"><link rel="prefetch" href="/assets/js/16.154d278f.js"><link rel="prefetch" href="/assets/js/17.40f5aa9b.js"><link rel="prefetch" href="/assets/js/5.f0be3e66.js"><link rel="prefetch" href="/assets/js/6.937da696.js"><link rel="prefetch" href="/assets/js/7.4098c9e2.js"><link rel="prefetch" href="/assets/js/8.e762ecaa.js"><link rel="prefetch" href="/assets/js/9.f234346a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6a1f76d8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/static/favicon.ico" alt="星野夜蝶 使用文档" class="logo"> <span class="site-name can-hide">星野夜蝶 使用文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  使用说明
+</a></div><div class="nav-item"><a href="/deploy/" class="nav-link">
+  部署说明
+</a></div><div class="nav-item"><a href="/bilibili/" class="nav-link">
+  哔哩哔哩接入
+</a></div><div class="nav-item"><a href="/qqGuild/" class="nav-link">
+  QQ频道机器人接入
+</a></div><div class="nav-item"><a href="/telegram/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Telegram机器人接入
+</a></div><div class="nav-item"><a href="/plugins/" class="nav-link">
+  插件开发指北
+</a></div><div class="nav-item"><a href="/thanks/" class="nav-link">
+  特别感谢
+</a></div><div class="nav-item"><a href="https://github.com/users/Giftia/projects/1" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  开发计划看板
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/Giftia/ChatDACS" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  使用说明
+</a></div><div class="nav-item"><a href="/deploy/" class="nav-link">
+  部署说明
+</a></div><div class="nav-item"><a href="/bilibili/" class="nav-link">
+  哔哩哔哩接入
+</a></div><div class="nav-item"><a href="/qqGuild/" class="nav-link">
+  QQ频道机器人接入
+</a></div><div class="nav-item"><a href="/telegram/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Telegram机器人接入
+</a></div><div class="nav-item"><a href="/plugins/" class="nav-link">
+  插件开发指北
+</a></div><div class="nav-item"><a href="/thanks/" class="nav-link">
+  特别感谢
+</a></div><div class="nav-item"><a href="https://github.com/users/Giftia/projects/1" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  开发计划看板
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/Giftia/ChatDACS" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>如何接入 Telegram 机器人</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/telegram/#第一步-创建机器人账号" class="sidebar-link">第一步 创建机器人账号</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/telegram/#第二步-配置机器人服务" class="sidebar-link">第二步 配置机器人服务</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/telegram/#第三步-测试功能" class="sidebar-link">第三步 测试功能</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="如何接入-telegram-机器人"><a href="#如何接入-telegram-机器人" class="header-anchor">#</a> 如何接入 Telegram 机器人 <span class="badge error" style="vertical-align:top;" data-v-15b7b770>注意</span></h1> <div class="custom-block danger"><p class="custom-block-title">注意</p> <p>一般而言，<code>Telegram Api</code> 需要在良好的网络环境下方可接入。但经 po 主测试，只要 <code>Telegram Api</code> 没有被 dns 污染的话，是可以直连的。</p></div> <h2 id="第一步-创建机器人账号"><a href="#第一步-创建机器人账号" class="header-anchor">#</a> 第一步 创建机器人账号</h2> <p>在 Telegram 上向 @BotFather 发送消息以注册您的机器人并接收其身份验证令牌。<a href="https://t.me/BotFather" target="_blank" rel="noopener noreferrer">点击开始和 @BotFather 聊天<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>如有困惑，请按这个文档进行操作：<a href="https://github.com/hosein2398/node-telegram-bot-api-tutorial#Creating+new+bot+with+BotFather" target="_blank" rel="noopener noreferrer">如何创建机器人<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>配置完成后获取机器人的 <code>token</code> 供下一步使用。</p> <h2 id="第二步-配置机器人服务"><a href="#第二步-配置机器人服务" class="header-anchor">#</a> 第二步 配置机器人服务</h2> <p>打开 <code>config</code> 文件夹内的 <code>config.yml</code> 配置文件，打开 <strong>接入Telegram开关</strong> <code>CONNECT_TELEGRAM_SWITCH</code>，将从 @BotFather 获取的 <code>token</code> 填入配置文件中的对应配置项 <code>TELEGRAM_BOT_TOKEN</code>，然后保存文件。</p> <h2 id="第三步-测试功能"><a href="#第三步-测试功能" class="header-anchor">#</a> 第三步 测试功能</h2> <p>启动 <code>chatdacs</code>，应该会显示 <code>小夜Telegram接入开启</code>，以及成功连接 Telegram 接口的响应。你的机器人已经自由了。</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/Giftia/ChatDACS-docs/edit/main/docs/telegram/README.md" target="_blank" rel="noopener noreferrer">帮助我们完善此页面</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">最后更新:</span> <span class="time">2025/5/28 11:27:26</span></div></footer> <!----> </main></div><div class="global-ui"><!----><!----><Live2d></Live2d></div></div>
+    <script src="/assets/js/app.2dfdd553.js" defer></script><script src="/assets/js/2.20dc188e.js" defer></script><script src="/assets/js/15.21c258d9.js" defer></script><script src="/assets/js/4.be7e55f8.js" defer></script><script src="/assets/js/3.1a8f7b58.js" defer></script>
+  </body>
+</html>

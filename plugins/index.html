@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>插件开发指北 | 星野夜蝶 使用文档</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/static/favicon.ico">
+    <meta name="description" content="一个简单的机器人框架，支持接入哔哩哔哩直播，具备完全功能的web端控制台。">
+    
+    <link rel="preload" href="/assets/css/0.styles.6a1f76d8.css" as="style"><link rel="preload" href="/assets/js/app.2dfdd553.js" as="script"><link rel="preload" href="/assets/js/2.20dc188e.js" as="script"><link rel="preload" href="/assets/js/13.05b01d29.js" as="script"><link rel="preload" href="/assets/js/3.1a8f7b58.js" as="script"><link rel="prefetch" href="/assets/js/10.17f682ff.js"><link rel="prefetch" href="/assets/js/11.e3b9eb81.js"><link rel="prefetch" href="/assets/js/12.d762acf8.js"><link rel="prefetch" href="/assets/js/14.879a0956.js"><link rel="prefetch" href="/assets/js/15.21c258d9.js"><link rel="prefetch" href="/assets/js/16.154d278f.js"><link rel="prefetch" href="/assets/js/17.40f5aa9b.js"><link rel="prefetch" href="/assets/js/4.be7e55f8.js"><link rel="prefetch" href="/assets/js/5.f0be3e66.js"><link rel="prefetch" href="/assets/js/6.937da696.js"><link rel="prefetch" href="/assets/js/7.4098c9e2.js"><link rel="prefetch" href="/assets/js/8.e762ecaa.js"><link rel="prefetch" href="/assets/js/9.f234346a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6a1f76d8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/static/favicon.ico" alt="星野夜蝶 使用文档" class="logo"> <span class="site-name can-hide">星野夜蝶 使用文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  使用说明
+</a></div><div class="nav-item"><a href="/deploy/" class="nav-link">
+  部署说明
+</a></div><div class="nav-item"><a href="/bilibili/" class="nav-link">
+  哔哩哔哩接入
+</a></div><div class="nav-item"><a href="/qqGuild/" class="nav-link">
+  QQ频道机器人接入
+</a></div><div class="nav-item"><a href="/telegram/" class="nav-link">
+  Telegram机器人接入
+</a></div><div class="nav-item"><a href="/plugins/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  插件开发指北
+</a></div><div class="nav-item"><a href="/thanks/" class="nav-link">
+  特别感谢
+</a></div><div class="nav-item"><a href="https://github.com/users/Giftia/projects/1" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  开发计划看板
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/Giftia/ChatDACS" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  使用说明
+</a></div><div class="nav-item"><a href="/deploy/" class="nav-link">
+  部署说明
+</a></div><div class="nav-item"><a href="/bilibili/" class="nav-link">
+  哔哩哔哩接入
+</a></div><div class="nav-item"><a href="/qqGuild/" class="nav-link">
+  QQ频道机器人接入
+</a></div><div class="nav-item"><a href="/telegram/" class="nav-link">
+  Telegram机器人接入
+</a></div><div class="nav-item"><a href="/plugins/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  插件开发指北
+</a></div><div class="nav-item"><a href="/thanks/" class="nav-link">
+  特别感谢
+</a></div><div class="nav-item"><a href="https://github.com/users/Giftia/projects/1" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  开发计划看板
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/Giftia/ChatDACS" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>插件开发指北</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/plugins/#小夜的插件系统" class="sidebar-link">小夜的插件系统</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/plugins/#开发一个插件" class="sidebar-link">开发一个插件</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/plugins/#使用插件" class="sidebar-link">使用插件</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="插件开发指北"><a href="#插件开发指北" class="header-anchor">#</a> 插件开发指北</h1> <p>前辈有句老话说得好，<a href="https://koishi.js.org/guide/command/#:~:text=%E7%B3%BB%E7%BB%9F%E5%88%9D%E6%8E%A2-,%E4%B8%80%E4%B8%AA%E6%88%90%E5%8A%9F%E7%9A%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E3%80%82,-%E6%AD%A3%E5%9B%A0%E4%B8%BA%E5%A6%82%E6%AD%A4" target="_blank" rel="noopener noreferrer">一个成功的机器人离不开强大的指令系统。<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>正因为如此，我们在开发时综合考虑了<code>我们所掌握的技术栈</code>以及<code>第三方插件开发者、爱好者所掌握的编码能力</code>，最终觉得，<code>从零开始的开发难度</code>更贴近大众所希望的开发流程，谁不会喜欢一个简单好玩成就感满满的玩具呢。下面我们将会介绍<code>小夜的插件系统是如何实现的</code>、<code>如何开发一个插件</code>，以及<code>如何使用插件</code>。</p> <h2 id="小夜的插件系统"><a href="#小夜的插件系统" class="header-anchor">#</a> 小夜的插件系统</h2> <p>小夜的插件系统非常基础，它围绕<a href="https://nodejs.org/docs/latest-v14.x/api/modules.html#modules_modules_commonjs_modules" target="_blank" rel="noopener noreferrer">Node.js原生的简单模块加载系统<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>为核心而开发。使用<code>module</code>的导出语法<code>module.exports</code>，我们可以将一个独立功能的文件导出为一个可以被<code>require</code>的插件。</p> <p>小夜的插件加载器使用了<a href="https://github.com/desislavsd/require.all" target="_blank" rel="noopener noreferrer">require.all<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>模块，这是一个用来<code>读取指定目录中的所有文件，并可选择使用自定义函数或参数解析它们</code>的模块。</p> <p>插件会暴露出它自己的插件对象，其中包含<code>name</code>、<code>version</code>、<code>description</code>、<code>author</code>、<code>execute</code>等属性。最重要的是<code>execute</code>属性，它是一个函数，当插件被插件遍历器所调用时，<code>execute</code>内的函数会被调用。</p> <p>当小夜启动时，插件加载器会从<code>plugins</code>文件夹中读取所有的插件，并将其加载到<code>plugins</code>对象中。就那么简单！</p> <p>...</p> <p>以上部分实际上是底层实现，稍作了解即可，并不会影响接下来的插件开发。接下来我们将会介绍如何给小夜开发一个插件。</p> <h2 id="开发一个插件"><a href="#开发一个插件" class="header-anchor">#</a> 开发一个插件</h2> <p>我们拿一个非常简单的<code>连通性测试插件</code>插件作为插件模板来讲。</p> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">插件名</span><span class="token operator">:</span> <span class="token string">&quot;连通性测试插件&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 插件名，会在插件说明中展示</span>
+  <span class="token literal-property property">指令</span><span class="token operator">:</span> <span class="token string">&quot;^[/!]?ping$&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 插件触发的指令，可使用正则表达式匹配关键词，仅在插件加载时展示</span>
+  <span class="token literal-property property">版本</span><span class="token operator">:</span> <span class="token string">&quot;2.0&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 插件版本，会在插件说明中展示</span>
+  <span class="token literal-property property">作者</span><span class="token operator">:</span> <span class="token string">&quot;Giftina&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 插件作者，仅在插件加载时展示</span>
+  <span class="token literal-property property">描述</span><span class="token operator">:</span> <span class="token string">&quot;PingPong，最基础的响应插件，可基于本插件学习插件的开发。该插件实现了一个可以测试小夜的连通性的功能。&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 插件说明，仅在插件加载时展示</span>
+  <span class="token literal-property property">使用示例</span><span class="token operator">:</span> <span class="token string">&quot;/ping&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 插件的触发示例，会在插件说明中展示</span>
+  <span class="token literal-property property">预期返回</span><span class="token operator">:</span> <span class="token string">&quot;Pong!&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 简单描述一下插件的预期返回，会在插件说明中展示</span>
+
+  <span class="token comment">/**
+   * ### 插件加载器将会给插件传入如下参数以供下文使用:
+   * @param {String} msg 消息全文
+   * @param {String} userId 用户id
+   * @param {String} userName 用户名
+   * @param {String} groupId 群id
+   * @param {String} groupName 群名
+   * @param {Any} options 其他可选参数
+   * @returns {Object} { type: &quot;返回类型&quot;, content: &quot;返回内容&quot; }
+   * ### 插件处理完成后需要返回处理结果，若无需回复则返回空文本： { type: &quot;text&quot;, content: &quot;&quot; }
+   * ### 返回值是一个对象，包含以下属性: `{ type: &quot;返回类型&quot;, content: &quot;返回内容&quot; }`
+   * ### 返回值的 返回类型 目前有 5 种类型： &quot;text&quot;, &quot;picture&quot;, &quot;audio&quot;, &quot;video&quot;, &quot;file&quot;:
+   * - text 为文本回复；
+   * - picture 为图片回复，content 可以使用图片链接或者base64编码的图片数据；
+   * - audio 为音频回复，content 可以使用音频链接或者base64编码的音频数据；
+   * - video 为视频回复，content 可以使用视频链接；
+   * - file 为文件回复，content 可以使用文件链接；
+   */</span>
+  <span class="token function-variable function">execute</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">msg<span class="token punctuation">,</span> userId<span class="token punctuation">,</span> userName<span class="token punctuation">,</span> groupId<span class="token punctuation">,</span> groupName<span class="token punctuation">,</span> options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * 返回 Pong!
+     */</span>
+    <span class="token keyword">const</span> replyText <span class="token operator">=</span> <span class="token string">&quot;Pong!&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span> <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">&quot;text&quot;</span><span class="token punctuation">,</span> <span class="token literal-property property">content</span><span class="token operator">:</span> replyText <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>这个插件的功能很好理解：</p> <p><strong>当小夜接收到 <code>/ping</code> 或 <code>!ping</code> 或 <code>ping</code> 消息时，小夜将会直接回复 <code>Pong!</code>。</strong></p> <p>还没写完</p> <h2 id="使用插件"><a href="#使用插件" class="header-anchor">#</a> 使用插件</h2> <p>还没写完</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/Giftia/ChatDACS-docs/edit/main/docs/plugins/README.md" target="_blank" rel="noopener noreferrer">帮助我们完善此页面</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">最后更新:</span> <span class="time">2025/5/28 11:27:26</span></div></footer> <!----> </main></div><div class="global-ui"><!----><!----><Live2d></Live2d></div></div>
+    <script src="/assets/js/app.2dfdd553.js" defer></script><script src="/assets/js/2.20dc188e.js" defer></script><script src="/assets/js/13.05b01d29.js" defer></script><script src="/assets/js/3.1a8f7b58.js" defer></script>
+  </body>
+</html>

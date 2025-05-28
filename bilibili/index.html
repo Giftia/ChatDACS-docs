@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>如何接入哔哩哔哩直播间 | 星野夜蝶 使用文档</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/static/favicon.ico">
+    <meta name="description" content="一个简单的机器人框架，支持接入哔哩哔哩直播，具备完全功能的web端控制台。">
+    
+    <link rel="preload" href="/assets/css/0.styles.6a1f76d8.css" as="style"><link rel="preload" href="/assets/js/app.2dfdd553.js" as="script"><link rel="preload" href="/assets/js/2.20dc188e.js" as="script"><link rel="preload" href="/assets/js/10.17f682ff.js" as="script"><link rel="preload" href="/assets/js/3.1a8f7b58.js" as="script"><link rel="prefetch" href="/assets/js/11.e3b9eb81.js"><link rel="prefetch" href="/assets/js/12.d762acf8.js"><link rel="prefetch" href="/assets/js/13.05b01d29.js"><link rel="prefetch" href="/assets/js/14.879a0956.js"><link rel="prefetch" href="/assets/js/15.21c258d9.js"><link rel="prefetch" href="/assets/js/16.154d278f.js"><link rel="prefetch" href="/assets/js/17.40f5aa9b.js"><link rel="prefetch" href="/assets/js/4.be7e55f8.js"><link rel="prefetch" href="/assets/js/5.f0be3e66.js"><link rel="prefetch" href="/assets/js/6.937da696.js"><link rel="prefetch" href="/assets/js/7.4098c9e2.js"><link rel="prefetch" href="/assets/js/8.e762ecaa.js"><link rel="prefetch" href="/assets/js/9.f234346a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6a1f76d8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/static/favicon.ico" alt="星野夜蝶 使用文档" class="logo"> <span class="site-name can-hide">星野夜蝶 使用文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  使用说明
+</a></div><div class="nav-item"><a href="/deploy/" class="nav-link">
+  部署说明
+</a></div><div class="nav-item"><a href="/bilibili/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  哔哩哔哩接入
+</a></div><div class="nav-item"><a href="/qqGuild/" class="nav-link">
+  QQ频道机器人接入
+</a></div><div class="nav-item"><a href="/telegram/" class="nav-link">
+  Telegram机器人接入
+</a></div><div class="nav-item"><a href="/plugins/" class="nav-link">
+  插件开发指北
+</a></div><div class="nav-item"><a href="/thanks/" class="nav-link">
+  特别感谢
+</a></div><div class="nav-item"><a href="https://github.com/users/Giftia/projects/1" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  开发计划看板
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/Giftia/ChatDACS" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  使用说明
+</a></div><div class="nav-item"><a href="/deploy/" class="nav-link">
+  部署说明
+</a></div><div class="nav-item"><a href="/bilibili/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  哔哩哔哩接入
+</a></div><div class="nav-item"><a href="/qqGuild/" class="nav-link">
+  QQ频道机器人接入
+</a></div><div class="nav-item"><a href="/telegram/" class="nav-link">
+  Telegram机器人接入
+</a></div><div class="nav-item"><a href="/plugins/" class="nav-link">
+  插件开发指北
+</a></div><div class="nav-item"><a href="/thanks/" class="nav-link">
+  特别感谢
+</a></div><div class="nav-item"><a href="https://github.com/users/Giftia/projects/1" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  开发计划看板
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/Giftia/ChatDACS" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>如何接入哔哩哔哩直播间</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/bilibili/#第一步-配置直播间-id" class="sidebar-link">第一步 配置直播间 ID</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/bilibili/#第二步-测试接入" class="sidebar-link">第二步 测试接入</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/bilibili/#第三步-装修直播间" class="sidebar-link">第三步 装修直播间</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/bilibili/#最后-开播" class="sidebar-link">最后 开播！</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="如何接入哔哩哔哩直播间"><a href="#如何接入哔哩哔哩直播间" class="header-anchor">#</a> 如何接入哔哩哔哩直播间</h1> <h2 id="第一步-配置直播间-id"><a href="#第一步-配置直播间-id" class="header-anchor">#</a> 第一步 配置直播间 ID</h2> <ol><li><p>首先需要获取 <code>哔哩哔哩直播间 ID</code>，可以在直播间页面的 URL 中获取，如：<code>https://live.bilibili.com/24230873</code>，那么获取到的 <code>直播间 ID</code> 为 <code>24230873</code>。</p></li> <li><p>打开 <code>ChatDACS</code> 的配置文件 <code>config.yml</code> ，它位于 <code>config</code> 文件夹中。</p></li> <li><p>将最后一行 <code>BILIBILI_LIVE_ROOM_ID</code> 字段后的直播间 ID <code>24230873</code> 改为你的 <code>直播间 ID</code>。别忘了保存。</p></li> <li><p>运行 <code>chatdacs.exe</code> ，查看输出的直播间 ID 是否正确，直播间是否连接成功。</p></li> <li><p>（可选）使用 Live2D 软件套皮，并将嘴部动作监听 <code>默认音频输出设备</code>。</p></li></ol> <h2 id="第二步-测试接入"><a href="#第二步-测试接入" class="header-anchor">#</a> 第二步 测试接入</h2> <p>在上述步骤准备好之后，你可以发一些弹幕测试一下，看看它能不能正常工作。</p> <div class="custom-block tip"><p class="custom-block-title">正常的预期结果：</p> <p>小夜会对弹幕进行语音回复，语音音频将通过 <code>默认音频输出设备</code> 输出。</p> <p>如果出现和背景音乐冲突的情况，可以把背景音乐通过其他通道输出。</p> <p>在没有弹幕的时候，小夜会自行播放一些随机的语音聊天。</p> <p>与此同时，插件系统是可用的，会正常响应弹幕。</p> <p>请注意，如果同时启用了图片类插件，小夜可能会读出图片链接地址。</p></div> <h2 id="第三步-装修直播间"><a href="#第三步-装修直播间" class="header-anchor">#</a> 第三步 装修直播间</h2> <p>众所周知，人靠衣装马靠鞍，你需要好好装修一下你的直播间。推荐使用 <code>哔哩哔哩直播姬</code>，用来套皮直播已经相当好用了。</p> <p>在装修过程中，你会需要一个显示在直播屏幕上的字幕，这个字幕是小夜当前正在播放的语音的文本。</p> <p>你可以在 <code>ChatDACS</code> 的 <code>static\xiaoye\</code> 文件夹中找到 <code>live_latest_reply.txt</code>。</p> <p>在 <code>哔哩哔哩直播姬</code> 中配置字幕的文件来源为该文件，即可实现小夜在播放语音的同时，在直播间屏幕上显示语音的文本。</p> <h2 id="最后-开播"><a href="#最后-开播" class="header-anchor">#</a> 最后 开播！</h2> <p>现在你的直播间已经相当嘴臭了，你可以开播了！</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/Giftia/ChatDACS-docs/edit/main/docs/bilibili/README.md" target="_blank" rel="noopener noreferrer">帮助我们完善此页面</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">最后更新:</span> <span class="time">2025/5/28 11:27:26</span></div></footer> <!----> </main></div><div class="global-ui"><!----><!----><Live2d></Live2d></div></div>
+    <script src="/assets/js/app.2dfdd553.js" defer></script><script src="/assets/js/2.20dc188e.js" defer></script><script src="/assets/js/10.17f682ff.js" defer></script><script src="/assets/js/3.1a8f7b58.js" defer></script>
+  </body>
+</html>
