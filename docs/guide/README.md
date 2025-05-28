@@ -1,4 +1,4 @@
-# 使用说明 <Badge text="最新公开版本 v3.7.1" type="warning"/>
+# 使用说明 <Badge text="最新公开版本 v4.0.0-alpha.1" type="warning"/>
 
 <table width="100%" border="0">
   <tr>
