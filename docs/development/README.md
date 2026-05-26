@@ -61,3 +61,20 @@ execute(msg, userId, userName, groupId, groupName, options)
 - `macos-arm64`
 
 打包产物包含运行所需的 `config/`、`static/`、`plugins/`、`migrations/`、`node_modules`、`README.md`、`LICENSE`、`package.json` 和平台可执行文件。
+
+## 平台响应适配
+
+主仓内部通过 `src/platforms/responseAdapter.js` 集中处理插件响应到各聊天平台格式的转换。新代码优先使用：
+
+```js
+formatPluginAnswer(platform, answer, { webPort })
+```
+
+当前支持的平台标识包括：
+
+- `web`
+- `onebot` / `go-cqhttp` / `qq`
+- `qqGuild` / `qqInsideGuild`
+- `telegram`
+
+旧的 `utils.PluginAnswerToWebStyle`、`utils.PluginAnswerToGoCqhttpStyle`、`utils.PluginAnswerToQQGuildStyle`、`utils.PluginAnswerToTelegramStyle` 仍然保留，内部委托到同一个响应适配器。这样旧平台适配器和插件不用迁移，新平台或智能体接入可以复用同一条响应格式化链路。
