@@ -78,3 +78,31 @@ formatPluginAnswer(platform, answer, { webPort })
 - `telegram`
 
 旧的 `utils.PluginAnswerToWebStyle`、`utils.PluginAnswerToGoCqhttpStyle`、`utils.PluginAnswerToQQGuildStyle`、`utils.PluginAnswerToTelegramStyle` 仍然保留，内部委托到同一个响应适配器。这样旧平台适配器和插件不用迁移，新平台或智能体接入可以复用同一条响应格式化链路。
+
+## OneBot 适配边界
+
+QQ 群聊适配器内部通过 `src/platforms/oneBotSender.js` 统一拼装 OneBot HTTP API URL。新代码不应在 QQ 处理器里手写 `send_group_msg`、`set_group_ban`、`get_group_info` 等 URL，优先通过 sender 方法完成发送、禁言、群信息读取和请求审批。
+
+这个边界的目的不是替换 OneBot 协议，而是把平台 I/O 和业务处理分开，便于单元测试继续 mock HTTP 调用，避免测试环境必须启动真实 OneBot 服务。
+
+## QQ 处理器拆分
+
+`src/bots/qq.js` 仍然是 QQ 适配器入口，但已把高频入口逻辑拆成可测试模块：
+
+- `src/bots/qq/eventPreflight.js`：处理频道消息、加好友、进群邀请、机器人被禁言等事件预处理。
+- `src/bots/qq/mediaBridge.js`：处理 QQ 图片、视频转发到 Web Socket。
+- `src/bots/qq/groupServiceGate.js`：处理群服务启用、停用和停用状态拦截。
+- `src/bots/qq/pluginBridge.js`：把 QQ 群消息接入插件运行时，并通过 OneBot sender 发送插件回复。
+- `src/bots/qq/chatReply.js`：处理随机复读、被 @ 后提权回复和聊天核心回复。
+
+这些模块保持旧用户体验和旧插件协议不变。后续继续拆 QQ 群专有玩法时，应优先沿用这种边界：平台事件只在入口归一化，业务模块显式接收 `event`、`config`、`utils`、`oneBotSender`、`chatProcess` 等依赖，测试里不访问真实网络。
+
+## 数据模型连接
+
+系统插件模型统一复用 `plugins/system/model/database.js` 中的 Sequelize 实例。新增模型应从该文件引入：
+
+```js
+const {sequelize, DataTypes} = require('./database.js')
+```
+
+不要在单个 model 文件里重新 `new Sequelize(...)`。这样可以减少 SQLite 连接重复初始化，降低测试和启动时的隐式状态差异。

@@ -135,7 +135,7 @@
 
 没有问题，请按如下操作进行手动编译操作：
 
-1. 首先去 [https://nodejs.org/zh-cn/about/releases/](https://nodejs.org/zh-cn/about/releases/) 下载对应你系统的 Node.js `v14 长期维护版` ，在安装过程中请注意勾选 `Automatically install the necessary tools. Note that this will also install Chocolatey.` 以便自动安装一些必要的工具和编译链。具体安装方法请参考网上教程
+1. 首先去 [https://nodejs.org/zh-cn/about/releases/](https://nodejs.org/zh-cn/about/releases/) 下载对应你系统的 Node.js `v18.20.8`，这是当前主仓验证和 GitHub Actions 使用的基准版本。在安装过程中请注意勾选 `Automatically install the necessary tools. Note that this will also install Chocolatey.` 以便自动安装一些必要的工具和编译链。具体安装方法请参考网上教程
 
 2. 然后下载小夜最新代码的压缩包 [https://github.com/Giftia/ChatDACS/archive/refs/heads/master.zip](https://github.com/Giftia/ChatDACS/archive/refs/heads/master.zip) ，解压之
 
