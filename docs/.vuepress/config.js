@@ -1,3 +1,44 @@
+const plugins = {
+  '@vuepress/back-to-top': {},
+  '@vuepress/nprogress': {},
+  '@vuepress/active-header-links': {},
+  '@vuepress/medium-zoom': {
+    selector: 'img',
+  },
+  '@vuepress/pwa': {
+    skipWaiting: true,
+    serviceWorker: true,
+    updatePopup: {
+      message: '文档更新了，点击刷新',
+      buttonText: '刷新',
+    }
+  },
+  '@vuepress/last-updated': {
+    dateOptions: {
+      timeZone: "Asia/Shanghai",
+      hour12: false,
+    },
+  },
+}
+
+if (process.platform !== 'win32') {
+  plugins['vuepress-plugin-pixi-live2d-display'] = {
+    model: "/static/xiaoye/xiaoye.model3.json",
+    delay: 2000,
+    containerStyle: {
+      'display': 'flex',
+      'justify-content': 'center',
+      'align-items': 'center',
+      'position': 'fixed',
+      'width': '220px',
+      'height': '400px',
+      'left': '20px',
+      'bottom': '0px',
+      'z-index': 11, // https://github.com/mizuka-wu/vuepress-plugin-pixi-live2d-display/pull/1
+    },
+  }
+}
+
 module.exports = {
   locales: {
     '/': {
@@ -10,43 +51,7 @@ module.exports = {
   head: [
     ['link', { rel: 'icon', href: '/static/favicon.ico' }],
   ],
-  plugins: {
-    '@vuepress/back-to-top': {},
-    '@vuepress/nprogress': {},
-    '@vuepress/active-header-links': {},
-    '@vuepress/medium-zoom': {
-      selector: 'img',
-    },
-    '@vuepress/pwa': {
-      skipWaiting: true,
-      serviceWorker: true,
-      updatePopup: {
-        message: '文档更新了，点击刷新',
-        buttonText: '刷新',
-      }
-    },
-    '@vuepress/last-updated': {
-      dateOptions: {
-        timeZone: "Asia/Shanghai",
-        hour12: false,
-      },
-    },
-    'vuepress-plugin-pixi-live2d-display': {
-      model: "/static/xiaoye/xiaoye.model3.json",
-      delay: 2000,
-      containerStyle: {
-        'display': 'flex',
-        'justify-content': 'center',
-        'align-items': 'center',
-        'position': 'fixed',
-        'width': '220px',
-        'height': '400px',
-        'left': '20px',
-        'bottom': '0px',
-        'z-index': 11, // https://github.com/mizuka-wu/vuepress-plugin-pixi-live2d-display/pull/1
-      },
-    },
-  },
+  plugins,
   themeConfig: {
     logo: '/static/favicon.ico',
     repo: 'Giftia/ChatDACS',
@@ -71,6 +76,7 @@ module.exports = {
       { text: 'QQ频道机器人接入', link: '/qqGuild/' },
       { text: 'Telegram机器人接入', link: '/telegram/' },
       { text: '插件开发指北', link: '/plugins/' },
+      { text: '开发者指南', link: '/development/' },
       { text: '特别感谢', link: '/thanks/' },
       { text: '开发计划看板', link: 'https://github.com/users/Giftia/projects/1' },
     ]

@@ -8,8 +8,8 @@
   },
   "license": "CC-BY-SA-4.0",
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:dev": "node scripts/vuepress.js dev docs",
+    "docs:build": "node scripts/vuepress.js build docs"
   },
   "devDependencies": {
     "@vuepress/plugin-active-header-links": "1.9.7",
