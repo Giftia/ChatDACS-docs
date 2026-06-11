@@ -44,6 +44,17 @@ execute(msg, userId, userName, groupId, groupName, options)
 
 插件可以继续返回空字符串、字符串或 `{ type, content }`。运行时会统一处理响应、错误、插件开关缓存和软超时。默认软超时为 8000ms，超时会返回文本提示，但不会强制终止插件内部 Promise。
 
+## Web 运行时
+
+主仓 Web 端当前拆成两条内部运行时链路，前端 LayIM 事件和 cookie 名保持兼容：
+
+- `src/web/session.js`：处理 `ChatdacsID`、用户资料初始化、在线人数、归属地展示、随机昵称降级和 `disconnect` / `typing` / `typingOver` / `getSettings` 等基础 socket 事件。
+- `src/web/messageHandler.js`：处理 Web 消息清洗、消息入库、用户消息广播、插件执行、Web 响应格式转换和聊天兜底。
+
+新用户进入 Web 端时，如果随机昵称外部接口失败或返回空值，Web Session 会降级为 `匿名` 并继续完成连接，不应让外部 API 失败阻断网页聊天。Web Message 只发送非空字符串聊天回复，避免把 `undefined`、`null` 或对象误发成机器人消息。
+
+维护 Web 端代码时，优先通过这两个运行时的单元测试覆盖行为，不要在 `src/server.js` 里继续堆连接、用户、消息处理逻辑。`src/server.js` 应保留 Express、上传、profile、HTTP listen 和运行时装配职责。
+
 ## GitHub Actions
 
 主仓 CI 分两层：
