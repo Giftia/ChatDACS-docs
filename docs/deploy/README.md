@@ -68,7 +68,7 @@
 :::
 
 ::: tip 提示
-1. 自动构建目前覆盖 `linux-x64`、`linux-arm64`、`win-x64`、`win-arm64`、`macos-x64` 和 `macos-arm64`。必须下载与操作系统和 CPU 架构一致的运行包。
+1. 自动构建目前覆盖 `linux-x64`、`linux-arm64`、`win-x64`、`win-arm64`、`macos-x64` 和 `macos-arm64`。通常应下载与操作系统和 CPU 架构一致的运行包。Node.js 18 没有官方 Windows ARM64 运行时，因此 `win-arm64` 包使用经过 ARM runner 实测的 x64 兼容运行时，由 Windows 11 ARM 的 x64 兼容层执行。
 
 2. 本项目使用了 `ffmpeg` 依赖，用于 `go-cqhttp` 的语音格式转码，为了减小发行包体积，发行包内并没有内置 `ffmpeg`。故请自行下载 `ffmpeg.exe` 并放置于 `/plugins/go-cqhttp/` 文件夹下。下载地址：[https://giftia.lanzouf.com/ir05s05q67bg](https://giftia.lanzouf.com/ir05s05q67bg)，若链接失效，请移步QQ群 `157311946` 群共享自取。如果您不需要 QQ 端发送语音，可以无视本步骤。
 
@@ -169,7 +169,7 @@ node index.js
 npm run pkg
 ```
 
-产物位于 `.release/ChatDACS-v版本_平台.zip`。构建脚本只允许在目标平台和架构的原生环境打包，并把当前 Node.js `18.20.8` 运行时、生产依赖和应用源码作为一个完整部署单元。不要只复制启动器或 `runtime/`。
+产物位于 `.release/ChatDACS-v版本_平台.zip`。构建脚本会验证平台与运行时架构，并把当前 Node.js `18.20.8` 运行时、生产依赖和应用源码作为一个完整部署单元。除 Windows ARM 使用公开标记的 x64 兼容运行时外，其他目标必须在对应平台和架构的原生环境打包。不要只复制启动器或 `runtime/`。
 
 ## 🧐 一问一答 Q&A
 

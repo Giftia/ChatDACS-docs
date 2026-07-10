@@ -73,9 +73,11 @@ execute(msg, userId, userName, groupId, groupName, options)
 - `macos-x64`
 - `macos-arm64`
 
-构建不再使用旧 `pkg` 快照。每个 job 在目标平台和 CPU 架构的原生 runner 上安装生产依赖，并打包精确的 Node.js `18.20.8` 运行时。Windows ARM 使用 `windows-11-arm`，构建脚本会拒绝把 x64 原生依赖标记成 ARM 产物。
+构建不再使用旧 `pkg` 快照。每个 job 安装生产依赖，执行 Web / 插件 / 普通聊天烟测，再打包精确的 Node.js `18.20.8` 运行时并校验包内入口语法。Linux、macOS 和 Windows x64 使用原生运行时。
 
-运行包包含 `config/`、`static/`、`plugins/`、`migrations/`、`src/`、`node_modules/`、`runtime/`、`README.md`、`UPGRADE.md`、`package.json`、`release-manifest.json` 和平台启动器。Windows 入口是 `ChatDACS.cmd`，Linux 与 macOS 入口是 `chatdacs`。构建只收集 Git 已跟踪或未忽略的产品文件，运行期图片缓存和本机脏数据库不会进入产物。
+Node.js 18 没有官方 Windows ARM64 运行时。`win-arm64` job 因此在 `windows-11-arm` runner 上安装并实测 Node.js 18 x64 运行时，产物通过 Windows 11 ARM 的 x64 兼容层运行。`release-manifest.json` 会明确记录 `runtimeArch: "x64"` 与 `compatibility: "x64-emulation"`，不会把兼容包描述为原生产物。
+
+运行包包含 `config/`、`static/`、`plugins/`、`migrations/`、`src/`、`node_modules/`、`runtime/`、`README.md`、`UPGRADE.md`、`package.json`、`release-manifest.json` 和平台启动器。Windows 入口是 `ChatDACS.cmd`，Linux 与 macOS 入口是 `chatdacs`。构建只收集 Git 已跟踪或未忽略的产品文件，并按目标系统筛选 go-cqhttp 可执行文件；运行期图片缓存和本机脏数据库不会进入产物。
 
 ## 配置与数据库迁移
 
