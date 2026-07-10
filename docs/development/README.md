@@ -16,11 +16,13 @@
 npm run check:syntax
 npm run test:ci
 npm run ci:verify
+npm run verify:release
 ```
 
-- `check:syntax` 会检查 `index.js` 和 `src/**/*.js` 的 JavaScript 语法。
+- `check:syntax` 会检查根运行脚本以及 `config/`、`migrations/`、`plugins/`、`scripts/`、`src/` 中的 JavaScript 语法。
 - `test:ci` 使用 Jest 串行执行，避免端口、原生模块 mock 和数据库状态相互影响。
 - `ci:verify` 串联语法检查与单元测试，是提交前推荐执行的最小验证集。
+- `verify:release` 在上述检查后加载真实插件，并验证迁移、HTTP 首页、Web Session、`/ping` 插件与普通聊天链路。
 
 ## 插件运行时
 
@@ -51,7 +53,7 @@ execute(msg, userId, userName, groupId, groupName, options)
 - `src/web/session.js`：处理 `ChatdacsID`、用户资料初始化、在线人数、归属地展示、随机昵称降级和 `disconnect` / `typing` / `typingOver` / `getSettings` 等基础 socket 事件。
 - `src/web/messageHandler.js`：处理 Web 消息清洗、消息入库、用户消息广播、插件执行、Web 响应格式转换和聊天兜底。
 
-新用户进入 Web 端时，如果随机昵称外部接口失败或返回空值，Web Session 会降级为 `匿名` 并继续完成连接，不应让外部 API 失败阻断网页聊天。Web Message 只发送非空字符串聊天回复，避免把 `undefined`、`null` 或对象误发成机器人消息。
+新用户进入 Web 端时，如果随机昵称外部接口失败、超时或返回空值，Web Session 会降级为 `匿名` 并继续完成连接。随机昵称请求当前限制为 3 秒，不应让外部 API 阻断网页聊天。Web Message 只发送非空字符串聊天回复，避免把 `undefined`、`null` 或对象误发成机器人消息。
 
 维护 Web 端代码时，优先通过这两个运行时的单元测试覆盖行为，不要在 `src/server.js` 里继续堆连接、用户、消息处理逻辑。`src/server.js` 应保留 Express、上传、profile、HTTP listen 和运行时装配职责。
 
@@ -59,7 +61,7 @@ execute(msg, userId, userName, groupId, groupName, options)
 
 主仓 CI 分两层：
 
-- `Verify ChatDACS`：在 Pull Request 和 push 时运行，覆盖 Ubuntu 与 Windows，执行 Node 18.20.8、`npm ci`、语法检查和 Jest。
+- `Verify ChatDACS`：在 Pull Request 和 push 时运行，覆盖 Ubuntu 与 Windows，执行 Node 18.20.8、`npm ci` 和 `npm run verify:release`。
 - `Build ChatDACS One-Click-To-Deploy Package`：在 `master` push 或手动触发时运行，构建全矩阵一键运行包。
 
 打包矩阵包含：
@@ -71,7 +73,18 @@ execute(msg, userId, userName, groupId, groupName, options)
 - `macos-x64`
 - `macos-arm64`
 
-打包产物包含运行所需的 `config/`、`static/`、`plugins/`、`migrations/`、`node_modules`、`README.md`、`LICENSE`、`package.json` 和平台可执行文件。
+构建不再使用旧 `pkg` 快照。每个 job 在目标平台和 CPU 架构的原生 runner 上安装生产依赖，并打包精确的 Node.js `18.20.8` 运行时。Windows ARM 使用 `windows-11-arm`，构建脚本会拒绝把 x64 原生依赖标记成 ARM 产物。
+
+运行包包含 `config/`、`static/`、`plugins/`、`migrations/`、`src/`、`node_modules/`、`runtime/`、`README.md`、`UPGRADE.md`、`package.json`、`release-manifest.json` 和平台启动器。Windows 入口是 `ChatDACS.cmd`，Linux 与 macOS 入口是 `chatdacs`。构建只收集 Git 已跟踪或未忽略的产品文件，运行期图片缓存和本机脏数据库不会进入产物。
+
+## 配置与数据库迁移
+
+- `src/config/runtimeConfig.js` 统一规范化当前配置，并兼容 v3.7 的 `CONNECT_GO_CQHTTP_SWITCH`、`GO_CQHTTP_SERVICE_ANTI_POST_API`、`GO_CQHTTP_SERVICE_API_URL`。
+- `plugins/system/utils.js` 通过 `ConfigureRuntime` 使用同一份规范化配置，群列表、图片发送等旧工具函数不会继续读取到未映射的 OneBot 地址。
+- `src/core/migrations.js` 在进程内执行迁移。检测到完整 v3.7 表结构且没有 `SequelizeMeta` 时，会建立初始迁移基线并保留数据；无法识别的部分初始化数据库会拒绝启动。
+- 迁移在 Web 服务、插件和平台 Adapter 启动前完成。`messages.CID` 不再误设为唯一，同一 Web 用户可以连续写入多条消息。
+
+升级前必须备份 `config/config.yml` 和 `config/db.db`。回滚时恢复升级前的数据库副本，不要让 v3.7 打开已迁移数据库。
 
 ## 平台响应适配
 
@@ -95,6 +108,8 @@ formatPluginAnswer(platform, answer, { webPort })
 QQ 群聊适配器内部通过 `src/platforms/oneBotSender.js` 统一拼装 OneBot HTTP API URL。新代码不应在 QQ 处理器里手写 `send_group_msg`、`set_group_ban`、`get_group_info` 等 URL，优先通过 sender 方法完成发送、禁言、群信息读取和请求审批。
 
 这个边界的目的不是替换 OneBot 协议，而是把平台 I/O 和业务处理分开，便于单元测试继续 mock HTTP 调用，避免测试环境必须启动真实 OneBot 服务。
+
+OneBot webhook 收到事件后立即返回 HTTP `204`，事件在后台继续处理，异常只记录到日志，不会重复操作已经结束的 HTTP 响应。进程级异常通知也会隔离 QQ 管理员通知失败，Web-only 模式不依赖 OneBot 在线。
 
 ## QQ 处理器拆分
 

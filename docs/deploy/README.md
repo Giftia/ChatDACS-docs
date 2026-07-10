@@ -14,11 +14,11 @@
 
 <img :src="$withBase('/static/run-step2.jpg')" alt="步骤2">
 
-4. 直接运行文件夹里的 `chatdacs.exe` 就可以辣。运行后将会弹出两个窗口，一个是小夜后台窗口，一个是 QQ 登陆窗口，两个都不可关闭，关闭会导致小夜失联。按 qq 登陆窗口提示用 QQ 扫描二维码即可登陆 QQ。若提示需要滑条验证码，请按提示操作进行验证操作。
+4. Windows 运行文件夹里的 `ChatDACS.cmd`；Linux 和 macOS 运行 `./chatdacs`。运行包已经包含对应平台的 Node.js，不需要另外安装 Node。启用内置 go-cqhttp 时，Windows 和 Linux 会再打开 QQ 登录流程，请按提示扫码或完成验证。
 
 <img :src="$withBase('/static/run-step3.jpg')" alt="步骤3">
 
-部署完成后请依个人喜好，酌量修改小夜配置文件 `/config/config.yaml` 。如果在部署过程中有任何问题的话，请进 QQ 群 `157311946` 来提问吧，有问必答噢。
+部署完成后请依个人喜好，酌量修改小夜配置文件 `/config/config.yml`。如果在部署过程中有任何问题的话，请进 QQ 群 `157311946` 来提问吧，有问必答噢。
 
 ### 宿主机配置
 
@@ -68,13 +68,13 @@
 :::
 
 ::: tip 提示
-1. 小夜一键运行包目前支持 `Windows 64位` 、 `Linux 64位` 系统，如果您的系统不支持一键运行包，请呼叫开发组申请增加对应系统平台的一键运行包，或移步下方 手动编译 章节查看如何进行自行编译。
+1. 自动构建目前覆盖 `linux-x64`、`linux-arm64`、`win-x64`、`win-arm64`、`macos-x64` 和 `macos-arm64`。必须下载与操作系统和 CPU 架构一致的运行包。
 
 2. 本项目使用了 `ffmpeg` 依赖，用于 `go-cqhttp` 的语音格式转码，为了减小发行包体积，发行包内并没有内置 `ffmpeg`。故请自行下载 `ffmpeg.exe` 并放置于 `/plugins/go-cqhttp/` 文件夹下。下载地址：[https://giftia.lanzouf.com/ir05s05q67bg](https://giftia.lanzouf.com/ir05s05q67bg)，若链接失效，请移步QQ群 `157311946` 群共享自取。如果您不需要 QQ 端发送语音，可以无视本步骤。
 
 3. 建议使用注册时间久一些的 QQ 号作为小夜号登陆使用，不容易被封号。因为新号很容易因为疼讯检测到的突然频繁发言而被风控。
 
-4. 如果想要切换小夜使用的 QQ 账号，请先关闭两个程序窗口，进入 `plugins` 文件夹里的 `go-cqhttp` 文件夹，删除 `device.json` 和 `session.token` 这两个文件，随后启动 `chatdacs.exe` 即可重新扫码登陆。
+4. 如果想要切换小夜使用的 QQ 账号，请先停止 ChatDACS 和 go-cqhttp，进入 `plugins/go-cqhttp/`，删除 `device.json` 和 `session.token`，随后重新启动 ChatDACS 即可扫码登录。
 
 5. 若想跳过 QQ 扫码登陆，保持 QQ 持久化登录，请先关闭两个程序窗口，请进入 `plugins` 文件夹里的 `go-cqhttp` 文件夹，修改第 4、5 行的 uin 和 password 为 QQ 账号和密码，以后的启动都会保持 QQ 登陆。
 
@@ -87,17 +87,17 @@
 9. 如果观察到程序左上角出现了 `选择` 字样，说明已经进入了不可避免的 ~~`The World!`~~ 时停，在时停期间的所有请求都会阻塞，请在窗口内 `黑色背景区域` 右键一下以退出时停，才可以继续运行。如果程序时停过长，解除时停后会将所有时停期间的消息进行瞬间处理，有可能会导致处理量过大导致小夜猛烈响应输出。这种时候建议别解除时停了，直接重开，右上角 X 掉，重新启动。
 :::
 
-## 🐱‍💻 增量更新 Incremental Update
+## 🐱‍💻 从 v3.7 升级 Upgrade From v3.7
 
-`Update-Package` 是适用于前一版本的增量更新包，解压后将内容物直接放入前一版本的文件夹，全部替换即可完成增量更新。
+不要把新版运行包直接覆盖到正在使用的旧目录，这可能覆盖配置或数据库。建议并行解压和验证：
 
-1. 首先点击进入 [小夜的最新发行包页面](https://github.com/Giftia/ChatDACS/releases/latest)
+1. 停止 ChatDACS 和 go-cqhttp，把旧版 `config/config.yml` 与 `config/db.db` 备份到安装目录之外。
+2. 将新版运行包解压到新目录，再把备份的两个文件复制到新版 `config/`。
+3. 启动新版。程序会先建立 v3.7 数据库迁移基线，再应用后续迁移；迁移完成后才开放 Web 和平台服务。
+4. 打开 Web 控制台，依次验证 `/ping` 和普通聊天；启用 OneBot 时再验证群消息收发。
+5. 验收通过前保留旧版目录。需要回滚时，停止新版并恢复升级前的 `config.yml` 与 `db.db` 原始备份，不要让 v3.7 打开已迁移的数据库。
 
-2. 在页面下方的资产 `Assets` 里点击下载增量更新包 `ChatDACS-vX.X.X_Update-Package.zip`
-
-3. 解压增量更新包，将内容物全部放入前一版本的文件夹，全部替换即可。
-
-4. 启动 `chatdacs.exe` ，即可完成增量更新。数据库更新会在程序启动时自动应用。
+新版会自动映射 v3.7 的 `CONNECT_GO_CQHTTP_SWITCH`、`GO_CQHTTP_SERVICE_ANTI_POST_API` 和 `GO_CQHTTP_SERVICE_API_URL`。新旧键同时存在时，以新键为准。
 
 ## 🐋 使用 Docker 部署 Deploy With Docker
 
@@ -117,7 +117,7 @@
 
 3. 在页面下方的制品 `Artifacts` 里点击下载自动构建好的 `ChatDACS` 压缩包
 
-4. 解压 `ChatDACS` 压缩包，直接运行 `chatdacs.exe` 就可以启动测试版小夜辣
+4. 解压 `ChatDACS` 压缩包，Windows 运行 `ChatDACS.cmd`，Linux 和 macOS 运行 `./chatdacs`
 
 ## 🛠 手动编译 Manual Compile
 
@@ -139,38 +139,37 @@
 
 2. 然后下载小夜最新代码的压缩包 [https://github.com/Giftia/ChatDACS/archive/refs/heads/master.zip](https://github.com/Giftia/ChatDACS/archive/refs/heads/master.zip) ，解压之
 
-3. 打开系统的 `shell` ，也就是泛指的 `命令行` ，如 `CMD(dos)`、`PowerShell(win)`、`Bash(linux)`、`iTerm2(mac)` 等，用 `cd` 命令**进入小夜代码根目录**后，运行：
+3. 打开系统的 `shell`，如 `CMD`、`PowerShell`、`Bash` 或 `iTerm2`，用 `cd` 命令**进入小夜代码根目录**后运行：
 
 ```bash
-npm install -g cnpm --registry=https://registry.npm.taobao.org
+npm ci
 ```
 
 ::: tip 提示
-该步骤目的是安装 `cnpm` ，用于安装依赖组件。`cnpm` 是淘宝的 `npm` 镜像源，用于在中国大陆加速安装依赖的速度和成功率。
+`npm ci` 会严格按照 `package-lock.json` 安装依赖。遇到 `canvas` 等原生模块错误时，先确认当前 Node.js 为 `18.20.8`，再重新安装依赖。
 :::
 
-4. 等待进度完成后运行：
+4. 提交或打包前执行完整发布验证：
 
 ```bash
-cnpm ci
+npm run verify:release
 ```
 
-::: tip 提示
-该步骤会安装小夜的依赖组件。对比网上教程常用的 `npm i` ，`cnpm ci` 的效率和安装成功率更高。
-:::
+该命令会执行运行文件语法检查、全部 Jest 测试，以及真实插件加载、HTTP 首页、Web Session、`/ping` 和普通聊天链路烟测。
 
-5. 等待进度完成后运行小夜：
+5. 运行小夜：
 
 ```bash
 node index.js
 ```
 
-好了，小夜应该已经启动了 🎉。确认小夜运行无误后，是时候该生成适合您的系统的可执行文件了，**进入小夜代码根目录**后使用手动打包指令：
+6. 确认运行无误后，可以生成当前系统和 CPU 架构的一键运行包：
 
 ```bash
-cnpm install pkg -g
-cnpm run pkg
+npm run pkg
 ```
+
+产物位于 `.release/ChatDACS-v版本_平台.zip`。构建脚本只允许在目标平台和架构的原生环境打包，并把当前 Node.js `18.20.8` 运行时、生产依赖和应用源码作为一个完整部署单元。不要只复制启动器或 `runtime/`。
 
 ## 🧐 一问一答 Q&A
 
