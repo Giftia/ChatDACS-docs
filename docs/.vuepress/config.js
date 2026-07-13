@@ -72,6 +72,7 @@ module.exports = {
       { text: '主页', link: '/' },
       { text: '使用说明', link: '/guide/' },
       { text: '部署说明', link: '/deploy/' },
+      { text: 'QQ机器人接入', link: '/qq/' },
       { text: '哔哩哔哩接入', link: '/bilibili/' },
       { text: 'QQ频道机器人接入', link: '/qqGuild/' },
       { text: 'Telegram机器人接入', link: '/telegram/' },

@@ -77,7 +77,7 @@ execute(msg, userId, userName, groupId, groupName, options)
 
 Node.js 18 没有官方 Windows ARM64 运行时。`win-arm64` job 因此在 `windows-11-arm` runner 上安装并实测 Node.js 18 x64 运行时，产物通过 Windows 11 ARM 的 x64 兼容层运行。`release-manifest.json` 会明确记录 `runtimeArch: "x64"` 与 `compatibility: "x64-emulation"`，不会把兼容包描述为原生产物。
 
-运行包包含 `config/`、`static/`、`plugins/`、`migrations/`、`src/`、`node_modules/`、`runtime/`、`README.md`、`UPGRADE.md`、`package.json`、`release-manifest.json` 和平台启动器。Windows 入口是 `ChatDACS.cmd`，Linux 与 macOS 入口是 `chatdacs`。构建只收集 Git 已跟踪或未忽略的产品文件，并按目标系统筛选 go-cqhttp 可执行文件；运行期图片缓存和本机脏数据库不会进入产物。
+运行包包含 `config/`、`static/`、`plugins/`、`integrations/`、`migrations/`、`src/`、`node_modules/`、`runtime/`、`README.md`、`UPGRADE.md`、`package.json`、`release-manifest.json` 和平台启动器。Windows 入口是 `ChatDACS.cmd`，Linux 与 macOS 入口是 `chatdacs`。构建只收集 Git 已跟踪或未忽略的产品文件，并按目标系统筛选 go-cqhttp 可执行文件；运行期图片缓存和本机脏数据库不会进入产物。
 
 ## 配置与数据库迁移
 
@@ -107,11 +107,17 @@ formatPluginAnswer(platform, answer, { webPort })
 
 ## OneBot 适配边界
 
+`ONE_BOT_PROVIDER` 明确协议实现：`napcat` 是推荐路径，`external` 保持通用 OneBot 11 接入，`go-cqhttp` 用于旧部署。`GO_CQHTTP_SWITCH: true` 优先级最高，以确保旧配置仍能启动内置进程。
+
+NapCat 是独立运行的外部组件。启动时 `src/bots/qq/napcat.js` 调用 `get_version_info` 检查 OneBot 11 兼容性；失败只记录警告，不阻断 Web 服务。QQ Adapter 随后仍会执行群列表初始化，协议端恢复后需要重启 ChatDACS。`scripts/generate-napcat-config.js` 从规范化后的 ChatDACS 配置生成 HTTP Server 与反向 HTTP Client 配置，并强制 `messagePostFormat: string`，保持现有 CQ 码解析。
+
 QQ 群聊适配器内部通过 `src/platforms/oneBotSender.js` 统一拼装 OneBot HTTP API URL。新代码不应在 QQ 处理器里手写 `send_group_msg`、`set_group_ban`、`get_group_info` 等 URL，优先通过 sender 方法完成发送、禁言、群信息读取和请求审批。
 
 这个边界的目的不是替换 OneBot 协议，而是把平台 I/O 和业务处理分开，便于单元测试继续 mock HTTP 调用，避免测试环境必须启动真实 OneBot 服务。
 
 OneBot webhook 收到事件后立即返回 HTTP `204`，事件在后台继续处理，异常只记录到日志，不会重复操作已经结束的 HTTP 响应。进程级异常通知也会隔离 QQ 管理员通知失败，Web-only 模式不依赖 OneBot 在线。
+
+当前 OneBot API 未统一支持 token，因此生成配置只监听 `127.0.0.1` 且 token 为空。不要将 API 端口直接暴露到公网。等所有旧 QQ HTTP 调用收敛到 `oneBotSender` 后，再统一增加鉴权或评估 WebSocket transport。
 
 ## QQ 处理器拆分
 

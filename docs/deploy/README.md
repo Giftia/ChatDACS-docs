@@ -14,11 +14,17 @@
 
 <img :src="$withBase('/static/run-step2.jpg')" alt="步骤2">
 
-4. Windows 运行文件夹里的 `ChatDACS.cmd`；Linux 和 macOS 运行 `./chatdacs`。运行包已经包含对应平台的 Node.js，不需要另外安装 Node。启用内置 go-cqhttp 时，Windows 和 Linux 会再打开 QQ 登录流程，请按提示扫码或完成验证。
+4. Windows 运行文件夹里的 `ChatDACS.cmd`；Linux 和 macOS 运行 `./chatdacs`。运行包已经包含对应平台的 Node.js，不需要另外安装 Node。Web 可以独立运行；接入 QQ 时，推荐另外安装并启动 NapCatQQ。
 
 <img :src="$withBase('/static/run-step3.jpg')" alt="步骤3">
 
 部署完成后请依个人喜好，酌量修改小夜配置文件 `/config/config.yml`。如果在部署过程中有任何问题的话，请进 QQ 群 `157311946` 来提问吧，有问必答噢。
+
+### 接入 QQ
+
+ChatDACS 当前推荐通过 NapCatQQ 的 OneBot 11 HTTP 接口接入普通 QQ 群。NapCatQQ 不包含在 ChatDACS 运行包内，需要独立安装、登录和运行。完整步骤见 [QQ机器人接入](/qq/)。
+
+旧版内置 go-cqhttp 仍可通过 `GO_CQHTTP_SWITCH: true` 启用，用于现有部署过渡；go-cqhttp 已停止维护，不建议新部署继续使用。
 
 ### 宿主机配置
 
@@ -70,13 +76,13 @@
 ::: tip 提示
 1. 自动构建目前覆盖 `linux-x64`、`linux-arm64`、`win-x64`、`win-arm64`、`macos-x64` 和 `macos-arm64`。通常应下载与操作系统和 CPU 架构一致的运行包。Node.js 18 没有官方 Windows ARM64 运行时，因此 `win-arm64` 包使用经过 ARM runner 实测的 x64 兼容运行时，由 Windows 11 ARM 的 x64 兼容层执行。
 
-2. 本项目使用了 `ffmpeg` 依赖，用于 `go-cqhttp` 的语音格式转码，为了减小发行包体积，发行包内并没有内置 `ffmpeg`。故请自行下载 `ffmpeg.exe` 并放置于 `/plugins/go-cqhttp/` 文件夹下。下载地址：[https://giftia.lanzouf.com/ir05s05q67bg](https://giftia.lanzouf.com/ir05s05q67bg)，若链接失效，请移步QQ群 `157311946` 群共享自取。如果您不需要 QQ 端发送语音，可以无视本步骤。
+2. 仅当使用旧 go-cqhttp 兼容模式时才需要自行准备 `ffmpeg` 进行语音格式转码。NapCatQQ 的安装与媒体依赖以其官方文档为准。
 
 3. 建议使用注册时间久一些的 QQ 号作为小夜号登陆使用，不容易被封号。因为新号很容易因为疼讯检测到的突然频繁发言而被风控。
 
-4. 如果想要切换小夜使用的 QQ 账号，请先停止 ChatDACS 和 go-cqhttp，进入 `plugins/go-cqhttp/`，删除 `device.json` 和 `session.token`，随后重新启动 ChatDACS 即可扫码登录。
+4. 使用 NapCatQQ 时，在 NapCat 侧管理登录账号；不要修改 ChatDACS 数据库。旧 go-cqhttp 用户切换账号时，先停止两个程序，再处理其 `device.json` 和 `session.token`。
 
-5. 若想跳过 QQ 扫码登陆，保持 QQ 持久化登录，请先关闭两个程序窗口，请进入 `plugins` 文件夹里的 `go-cqhttp` 文件夹，修改第 4、5 行的 uin 和 password 为 QQ 账号和密码，以后的启动都会保持 QQ 登陆。
+5. QQ 登录态由所选 OneBot provider 管理。请勿把 QQ 密码写入 ChatDACS 配置文件或提交到 Git。
 
 6. 若不想使用某些插件功能，如色图功能，请直接删除 `plugins` 文件夹里的对应插件，并重启小夜。也可以把插件的文件后缀名 `.js` 改为别的。
 
@@ -98,6 +104,8 @@
 5. 验收通过前保留旧版目录。需要回滚时，停止新版并恢复升级前的 `config.yml` 与 `db.db` 原始备份，不要让 v3.7 打开已迁移的数据库。
 
 新版会自动映射 v3.7 的 `CONNECT_GO_CQHTTP_SWITCH`、`GO_CQHTTP_SERVICE_ANTI_POST_API` 和 `GO_CQHTTP_SERVICE_API_URL`。新旧键同时存在时，以新键为准。
+
+若在升级后迁移到 NapCatQQ，将 `ONE_BOT_PROVIDER` 设为 `napcat`、`GO_CQHTTP_SWITCH` 设为 `false`，再按 [QQ机器人接入](/qq/) 生成和导入网络配置。验收通过前保留旧 go-cqhttp 目录以便独立回退。
 
 ## 🐋 使用 Docker 部署 Deploy With Docker
 
