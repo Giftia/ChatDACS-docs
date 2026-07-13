@@ -46,11 +46,12 @@ npm run qq:napcat:config -- --output integrations/napcat/onebot11.json
 ## 4. 启动与验收
 
 1. 启动并登录 NapCatQQ。
-2. 启动 ChatDACS，确认日志显示 `NapCat OneBot 11 已连接`。
-3. 在测试群发送 `/ping`，确认回复 `Pong!`。
-4. 发送普通聊天消息，确认小夜返回非空回复。
-5. 验证需要管理员权限的群玩法和图片消息。
-6. 停止 NapCat，确认 ChatDACS Web 页面仍正常；恢复 NapCat 并重启 ChatDACS 后重新测试群消息。
+2. 源码部署运行 `npm run qq:napcat:check`，确认兼容性、登录态和可见群数量正常；该命令不会输出 QQ 号或昵称。
+3. 启动 ChatDACS，确认日志显示 `NapCat OneBot 11 已连接`。
+4. 在测试群发送 `/ping`，确认回复 `Pong!`。
+5. 发送普通聊天消息，确认小夜返回非空回复。
+6. 验证需要管理员权限的群玩法和图片消息。
+7. 停止 NapCat，确认 ChatDACS Web 页面仍正常；恢复 NapCat 并重启 ChatDACS 后重新测试群消息。
 
 NapCat 启动探测失败不会让 ChatDACS 退出，这是为了保证 Web 与其他平台可独立运行。由于 QQ Adapter 需要在启动时读取群列表，NapCat 恢复后仍需重启 ChatDACS。
 
