@@ -74,7 +74,7 @@ ChatDACS 当前推荐通过 NapCatQQ 的 OneBot 11 HTTP 接口接入普通 QQ �
 :::
 
 ::: tip 提示
-1. 自动构建目前覆盖 `linux-x64`、`linux-arm64`、`win-x64`、`win-arm64`、`macos-x64` 和 `macos-arm64`。通常应下载与操作系统和 CPU 架构一致的运行包。Node.js 18 没有官方 Windows ARM64 运行时，因此 `win-arm64` 包使用经过 ARM runner 实测的 x64 兼容运行时，由 Windows 11 ARM 的 x64 兼容层执行。
+1. 当前源码将 Node.js 固定为 `26.13.0`，构建矩阵配置了 `linux-x64`、`linux-arm64`、`win-x64`、`win-arm64`、`macos-x64` 和 `macos-arm64`。本轮仅完成 Windows x64 隔离候选验证，六平台云端未运行，不代表六平台新包均已发布。`win-arm64` 因原生依赖支持限制，使用 x64 运行时与依赖，由 Windows 11 ARM 的 x64 兼容层执行；manifest 标记 `runtimeArch: "x64"`、`compatibility: "x64-emulation"`，不是 ARM64 原生包，ARM 真机未验收。构建证据与限制见 [开发者指南](/development/#github-actions)。
 
 2. 仅当使用旧 go-cqhttp 兼容模式时才需要自行准备 `ffmpeg` 进行语音格式转码。NapCatQQ 的安装与媒体依赖以其官方文档为准。
 
@@ -131,6 +131,10 @@ ChatDACS 当前推荐通过 NapCatQQ 的 OneBot 11 HTTP 接口接入普通 QQ �
 
 ### 手动编译流程需要一定的编码和 debug 基础，不建议新手操作
 
+::: tip 版本说明
+旧版 Node.js `18.20.8` 与 `pkg` 快照构建属于历史流程，不要与下面的当前模块化构建步骤混用。当前版本以主仓 `.nvmrc` 为准，固定为 Node.js `26.13.0`；`npm run pkg` 只是 `npm run package:release` 的兼容别名，不再使用旧 `pkg` 快照。
+:::
+
 如果小夜的一键运行包已经失效，维护者已经失踪，
 
 如果小夜的自动构建 <a href="https://github.com/Giftia/ChatDACS/actions/workflows/build.yml" target="_blank"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/Giftia/ChatDACS/Build%20ChatDACS%20One-Click-To-Deploy%20Package%20(ChatDACS%E4%B8%80%E9%94%AE%E8%BF%90%E8%A1%8C%E5%8C%85%E6%9E%84%E5%BB%BA)?label=%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA&logo=node.js&style=for-the-badge" alt="Workflow" /></a> 年久失修，一直失败，没有更新，
@@ -143,7 +147,7 @@ ChatDACS 当前推荐通过 NapCatQQ 的 OneBot 11 HTTP 接口接入普通 QQ �
 
 没有问题，请按如下操作进行手动编译操作：
 
-1. 首先去 [https://nodejs.org/zh-cn/about/releases/](https://nodejs.org/zh-cn/about/releases/) 下载对应你系统的 Node.js `v18.20.8`，这是当前主仓验证和 GitHub Actions 使用的基准版本。在安装过程中请注意勾选 `Automatically install the necessary tools. Note that this will also install Chocolatey.` 以便自动安装一些必要的工具和编译链。具体安装方法请参考网上教程
+1. 首先去 [https://nodejs.org/zh-cn/about/releases/](https://nodejs.org/zh-cn/about/releases/) 下载对应你系统、与主仓 `.nvmrc` 一致的 Node.js，当前为 `v26.13.0`。在安装过程中请注意勾选 `Automatically install the necessary tools. Note that this will also install Chocolatey.` 以便自动安装一些必要的工具和编译链。具体安装方法请参考网上教程
 
 2. 然后下载小夜最新代码的压缩包 [https://github.com/Giftia/ChatDACS/archive/refs/heads/master.zip](https://github.com/Giftia/ChatDACS/archive/refs/heads/master.zip) ，解压之
 
@@ -154,7 +158,7 @@ npm ci
 ```
 
 ::: tip 提示
-`npm ci` 会严格按照 `package-lock.json` 安装依赖。遇到 `canvas` 等原生模块错误时，先确认当前 Node.js 为 `18.20.8`，再重新安装依赖。
+`npm ci` 会严格按照 `package-lock.json` 安装依赖。遇到 `canvas` 等原生模块错误时，先确认当前 Node.js 与 `.nvmrc` 一致（当前为 `26.13.0`），再重新安装依赖，不要沿用旧 Node 18/24 的 `node_modules`。
 :::
 
 4. 提交或打包前执行完整发布验证：
@@ -177,7 +181,7 @@ node index.js
 npm run pkg
 ```
 
-产物位于 `.release/ChatDACS-v版本_平台.zip`。构建脚本会验证平台与运行时架构，并把当前 Node.js `18.20.8` 运行时、生产依赖和应用源码作为一个完整部署单元。除 Windows ARM 使用公开标记的 x64 兼容运行时外，其他目标必须在对应平台和架构的原生环境打包。不要只复制启动器或 `runtime/`。
+产物位于 `.release/ChatDACS-v版本_平台.zip`。构建脚本会验证平台与运行时架构，并把与 `.nvmrc` 一致的 Node.js `26.13.0` 运行时、生产依赖和应用源码作为一个完整部署单元。除 Windows ARM 使用公开标记的 x64 兼容运行时外，其他目标必须在对应平台和架构的原生环境打包。不要只复制启动器或 `runtime/`。
 
 ## 🧐 一问一答 Q&A
 

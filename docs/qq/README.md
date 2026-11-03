@@ -1,12 +1,25 @@
 # QQ机器人接入
 
+需要腾讯官方机器人应用接入时，请查看 [官方 QQ 机器人接入](./official.md)。
+官方通道使用单进程官方 SDK，继续由小夜和兼容插件应答；与下方个人 QQ / OneBot 接入相互独立。
+
 ChatDACS 推荐使用 [NapCatQQ](https://github.com/NapNeko/NapCatQQ) 作为普通 QQ 群的 OneBot 11 协议端。NapCatQQ 独立安装和运行，ChatDACS 不捆绑、不自动修改 NTQQ，也不接管 QQ 登录数据。
+
+SnowLuma 已增加独立 provider 的代码接入路径，本轮暂不启动，也没有真实 QQ 登录或消息送达验收。它与 NapCat 分开配置，不自动切换、启动或覆盖对方登录数据。下面仍是 NapCat 的安装与验收流程，不应把 `ONE_BOT_PROVIDER` 改成 `snowluma` 后照搬 NapCat 的 schema。SnowLuma 源码 v2.4.0 的 schema 与 raw HMAC 契约见 [开发者指南](/development/#onebot-适配边界)；具体工具与独立部署边界见主仓 `integrations/snowluma/README.md`。只读就绪检查会请求实际服务，需另行授权。
+
+本项目通过 HTTP 对接独立部署的 SnowLuma，不捆绑其源码、程序或原生组件。上游 [v2.4.0 许可](https://github.com/SnowLuma/SnowLuma/blob/v2.4.0/LICENSE) 为源码可见非商业许可，不是 OSI 开源许可；商业使用和再分发请先核对上游条款。CLI 的凭据相对路径以进程 cwd 为准，不随 YAML 文件位置变化。
 
 > QQ 频道官方机器人使用另一套接口，请查看 [QQ频道机器人接入](/qqGuild/)。
 
 ## 1. 安装 NapCatQQ
 
 按 [NapCatQQ 官方文档](https://napneko.github.io/) 安装适合当前系统的版本，并在 NapCat WebUI 中完成机器人 QQ 登录。建议先在专用测试群验收，避免直接影响现有运营群。
+
+NapCat 登录普通 QQ 账号，不使用官方机器人 AppID / AppSecret。建议使用独立账号，
+并注意非官方接入的账号风控风险。Windows 可选官方发布的 `NapCat.Shell.Windows.Node.zip`；
+本机验证版本 v4.18.42 包含独立 Node 和 QQ 内核，不必修补或升级日常桌面 QQ。
+核对发布包 SHA-256 后，为该进程单独设置 `NAPCAT_QQ_DATA_DIR` 和 `NAPCAT_WORKDIR`，
+将 WebUI 绑定到 `127.0.0.1` 并设置非默认密码。不要运行终止所有 QQ 进程的脚本。
 
 ## 2. 配置 ChatDACS
 
@@ -27,11 +40,13 @@ System:
 
 ## 3. 生成 NapCat 网络配置
 
-源码部署可在 ChatDACS 根目录运行：
+源码部署可在 ChatDACS 根目录使用单独准备的 YAML 导出私密配置。下面的路径仅为示例，输出目录需预先存在且由本人控制：
 
-```bash
-npm run qq:napcat:config -- --output integrations/napcat/onebot11.json
+```powershell
+npm run qq:onebot:config -- --config C:/private/chatdacs.yml --provider napcat --output C:/private/napcat.credentials.json
 ```
+
+生成文件可能含 access token，必须使用 `.credentials.json` 后缀，独占创建、不覆盖已有文件；不要写入仓库普通 JSON、提交 Git、放进静态目录或运行包。`ONE_BOT_CREDENTIALS_FILE` 的相对路径仍从进程 cwd 解析，不随 `--config` 的 YAML 位置改变。该命令只生成配置，不启动协议端。
 
 一键运行包用户也可以直接参考 `integrations/napcat/onebot11.json.example`，在 NapCat WebUI 中建立等价配置：
 
@@ -45,6 +60,10 @@ npm run qq:napcat:config -- --output integrations/napcat/onebot11.json
 
 ## 4. 启动与验收
 
+先验收基础文本，再逐项开放媒体、管理插件和群玩法。私聊与测试群分别验证 `/ping` 和普通聊天，
+同时核对程序入站、插件或聊天处理、OneBot `status=ok / retcode=0` 及手机实际收到。
+单靠接口成功不能证明送达，临时基础验收入口通过也不等于全部旧 QQ 功能通过。
+
 1. 启动并登录 NapCatQQ。
 2. 源码部署运行 `npm run qq:napcat:check`，确认兼容性、登录态和可见群数量正常；该命令不会输出 QQ 号或昵称。
 3. 启动 ChatDACS，确认日志显示 `NapCat OneBot 11 已连接`。
@@ -57,7 +76,9 @@ NapCat 启动探测失败不会让 ChatDACS 退出，这是为了保证 Web 与�
 
 ## 安全说明
 
-当前 ChatDACS 的旧 QQ API 调用尚未全部支持 OneBot token。默认生成配置因此只绑定回环地址且不设置 token。不要将 `5700` 端口暴露到公网；跨主机部署应使用防火墙、私有网络或受控反向代理。
+公共 OneBot sender 已使用独立查询参数编码，避免回复中的 `&`、`#`、`+` 或 CQ 码改变收件人、截断文本。
+
+OneBot HTTP 客户端已提供 token 鉴权边界，使用独立凭据文件或 `CHATDACS_ONEBOT_ACCESS_TOKEN`，不要把 token 写入 Git 或日志。本文现有 NapCat 回环兼容配置可不设 token，但 SnowLuma 接入要求非空 token，不能混用两者配置。不要将 `5700` 端口暴露到公网；跨主机部署应使用防火墙、私有网络或受控反向代理。配置生成与鉴权代码不等于真实账号已经验收。
 
 ## 旧 go-cqhttp 回退
 
