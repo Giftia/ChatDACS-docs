@@ -38,6 +38,8 @@ System:
 
 `GO_CQHTTP_SWITCH` 为 `true` 时会覆盖 provider 并启动旧 go-cqhttp，因此迁移 NapCat 时必须关闭。
 
+NapCat 与 SnowLuma 默认必须使用真实有效的 access token，包括回环部署。通过 `CHATDACS_ONEBOT_ACCESS_TOKEN` 或 `System.ONE_BOT_CREDENTIALS_FILE` 指定的私密 JSON 文件提供，文件字段为 `accessToken`，默认路径为 `config/onebot.credentials.json`；协议端配置同一 token。环境变量优先，不要使用空值或示例占位值。
+
 ## 3. 生成 NapCat 网络配置
 
 源码部署可在 ChatDACS 根目录使用单独准备的 YAML 导出私密配置。下面的路径仅为示例，输出目录需预先存在且由本人控制：
@@ -60,6 +62,16 @@ npm run qq:onebot:config -- --config C:/private/chatdacs.yml --provider napcat -
 
 ## 4. 启动与验收
 
+源码完整入口在 ChatDACS 根目录运行：
+
+```bash
+node index.js --config /private/local.yml
+```
+
+Windows 可使用 `C:/private/local.yml`。`--config` 不改变 cwd，相对凭据路径仍从 cwd 解析，不从 YAML 目录解析；不要覆盖原有配置、数据库或个人人设，选择独立 YAML 也不等于数据库自动隔离。
+
+完整 index 源码/云端验证与真实 QQ 私聊群聊送达分别验收，本轮真实收发待手机确认，历史受限入口不能替代。
+
 先验收基础文本，再逐项开放媒体、管理插件和群玩法。私聊与测试群分别验证 `/ping` 和普通聊天，
 同时核对程序入站、插件或聊天处理、OneBot `status=ok / retcode=0` 及手机实际收到。
 单靠接口成功不能证明送达，临时基础验收入口通过也不等于全部旧 QQ 功能通过。
@@ -74,11 +86,21 @@ npm run qq:onebot:config -- --config C:/private/chatdacs.yml --provider napcat -
 
 NapCat 启动探测失败不会让 ChatDACS 退出，这是为了保证 Web 与其他平台可独立运行。由于 QQ Adapter 需要在启动时读取群列表，NapCat 恢复后仍需重启 ChatDACS。
 
+可配置 `System.ONE_BOT_SELF_ID`，校验入站回调的 `self_id`，拒绝账号不匹配的事件；该校验及就绪检查成功不等于消息送达。
+
+自身 `message_sent` 和自身消息在入口丢弃，避免回复回流。普通 `message` 按 self / scope / peer / sender / message ID 隔离去重，窗口 5 分钟、最多 4096 项；缺失或无效 ID 不去重，失败不自动重试。`notice` / `poke` 保留原处理路径，不参与消息去重。主动发送的 `canSend` 包含群服务开关，执行“闭菊”后不再主动发送。
+
+原插件状态 `findOrCreate` 的读事务会与消息写入竞争并触发 `SQLITE_BUSY`；已改为 `findCreateFind`，同群插件状态操作进行 per-group 序列化。该修复的隔离验证与真实账号验收须分开判断。
+
 ## 安全说明
 
 公共 OneBot sender 已使用独立查询参数编码，避免回复中的 `&`、`#`、`+` 或 CQ 码改变收件人、截断文本。
 
-OneBot HTTP 客户端已提供 token 鉴权边界，使用独立凭据文件或 `CHATDACS_ONEBOT_ACCESS_TOKEN`，不要把 token 写入 Git 或日志。本文现有 NapCat 回环兼容配置可不设 token，但 SnowLuma 接入要求非空 token，不能混用两者配置。不要将 `5700` 端口暴露到公网；跨主机部署应使用防火墙、私有网络或受控反向代理。配置生成与鉴权代码不等于真实账号已经验收。
+OneBot HTTP 客户端保留 scoped Bearer，仅向配置的 API origin 与基路径注入 token，并禁止跟随重定向。回调保留原始请求体 HMAC-SHA1 的 `X-Signature: sha1=...`，兼容仅 Bearer 回调；提供签名时必须有效，不能用 Bearer 绕过无效签名，也不能用重新序列化的 JSON 代替原始请求体。
+
+只有 provider 未声明、`external` 或旧 go-cqhttp 路径，在未设置 token 环境变量、未显式声明凭据文件且默认文件不存在时，才兼容旧无 token 模式。显式空值、不可读文件、非法 JSON 或无效 token 均不能回退。不要把 token 写入 Git 或日志，不要将 `5700` 端口暴露到公网；跨主机须使用 TLS 或加密隧道及访问控制。配置生成与鉴权代码不等于真实账号已经验收。
+
+宿主 `wallpaper`、`tray`、`chatPush` 的执行与开关仅限可信 QQ/NapCat（OneBot）事件中的 `QQBOT_ADMIN_LIST` 宿主管理员；群管理员不能据此操作宿主。普通群插件切换与群服务启停需群 `admin` / `owner` 或宿主管理员，私聊普通插件开关只影响调用者本人的会话。公开游戏、语料和 LLM 人设查询不因此封禁。
 
 ## 旧 go-cqhttp 回退
 

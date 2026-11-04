@@ -29,19 +29,27 @@ npm run verify:release
 
 主入口接口为 `main({configPath, pluginDependencyOverrides, checkUpdates = true} = {})`，返回 `{http, io, stop}`。未传参数时保留原有配置读取、默认插件依赖和更新检查；`pluginDependencyOverrides` 只覆盖指定插件依赖，仍执行真实 main、迁移和插件初始化。`checkUpdates: false` 用于隔离测试中关闭更新检查，不能代替测试配置或网络隔离。
 
+源码完整入口支持在 ChatDACS 根目录运行：
+
+```bash
+node index.js --config /private/local.yml
+```
+
+Windows 可使用 `C:/private/local.yml`。此参数只选择 YAML，不改变 cwd；相对凭据路径仍从 cwd 解析，不从 YAML 所在目录解析。不覆盖原有配置、数据库或个人人设；独立 YAML 不会自动隔离数据库，隔离测试仍须按下文提前设置数据库路径。
+
 `CHATDACS_DB_PATH` 必须在 require index 或数据库模块前设置，数据库路径在 Sequelize 模块加载时固定，不能在 require 之后补设环境变量。`System.WEB_HOST` 可选，省略时保留旧 listen 绑定，不会自动改成 loopback。`scripts/verify-startup.js` 的 shadow 固定使用 `127.0.0.1` 和临时端口、独立 fixture 配置/SQL 数据库，替换托盘依赖并禁用更新检查；不读取真实账号配置，也不把外部平台上线作为前提。
 
 ```bash
 npm run smoke:startup
 ```
 
-该入口已加入 `npm run verify:release`、`scripts/ci-runtime.js production` 和包内 `bundle` 验证。Banach 最终 normal/degrade/logger 分工已冻结，交付 7 个套件 / 182 项测试及约 2.3 秒的真实 main 隔离 graceful smoke，覆盖 HTTP、会话、插件/聊天与退出，记录零外联。这是分工源码快照的结果；Bohr 已开始完整联合候选验证，最终结果仍待确认，不把“已接线”或单次 smoke 视为所有宿主都已通过。
+该入口已加入 `npm run verify:release`、`scripts/ci-runtime.js production` 和包内 `bundle` 验证。`84c51d7` 已完成 Node 26 本地全量 verify：60 个套件、1743 项测试通过，1 项 Windows 符号链接测试跳过，176 项语法检查和 actual main smoke 通过。隔离验证覆盖真实 main 的 HTTP、会话、插件/聊天与退出，不连接真实 QQ，不能代替上线或实际投递验收。
 
 单个平台连接/启动失败会报告对应固定安全 code，Web 和其他平台继续运行，不自动切换 provider，不伪装该平台已就绪；配置读取、迁移和控制器契约错误仍按各自失败策略处理，不作无条件吞错。
 
 默认日志 transport 只有 Console 与 cwd 下的 `error.log`、`combined.log` 两个本地文件，不默认向 `localhost:80` HTTP POST 日志。无需为默认日志启动额外 HTTP 接收器；该边界不等于平台、更新检查或聊天服务的网络全部关闭。
 
-已复现的 Web 入口问题已修复并通过对应复验，旧 release hold 对这些问题的引用保留为历史证据，不再描述成未修复阻断。当前发布判断仍等待本轮完整联合回归；六平台云端未运行，真实账号与全平台验收也不由本页提前承诺。
+完整 index 源码/云端验证与真实 QQ 私聊群聊送达分别验收，本轮真实收发待手机确认，历史受限入口不能替代。
 
 `await stop()` 幂等管理 QQ/official QQ/Guild/Bilibili/Telegram 控制器、socket/HTTP、进程异常监听和 SQL 连接。Bili/TG 新增 mock 安全关闭及停止后抑制迟到输出；真实托盘资源和自动拉起的 go-cqhttp 子进程不在其纳管内。此处不承诺全进程、全平台退出验收，也不把 mock 替代真实平台送达与恢复测试。
 
@@ -67,6 +75,12 @@ execute(msg, userId, userName, groupId, groupName, options)
 
 插件可以继续返回空字符串、字符串或 `{ type, content }`。运行时会统一处理响应、错误、插件开关缓存和软超时。默认软超时为 8000ms，超时会返回文本提示，但不会强制终止插件内部 Promise。
 
+此前云端 actual main smoke 的 `PLUGIN_RUNTIME_ERROR` / `SQLITE_BUSY` 已定位并修复：`GetGroupPluginStatus.findOrCreate` 的读事务与 `AddMessage` / `UpdateLoginTimes` 写竞争。当前插件状态路径使用不创建该读事务的 `findCreateFind`，并对同群状态操作进行 per-group 序列化，避免同群并发更新相互覆盖。不以自动重试掩盖锁竞争，也不把该修复扩大为所有 SQLite 并发场景的通过结论；该问题不再列为当前未修阻断。
+
+主动发送的 `canSend` 已纳入群服务开关，执行“闭菊”停用服务后不主动发送；禁言状态与 LLM/proactive 双插件开关仍需通过检查。
+
+`src/plugins/authorization.js` 在执行和切换前区分宿主权限与会话权限。`wallpaper`、`tray`、`chatPush` 的执行及开关仅允许可信 QQ/NapCat（OneBot）事件中的 `QQBOT_ADMIN_LIST` 宿主管理员；归一化身份必须与原始事件一致，不能只相信调用者填入的 ID。普通群插件切换和群服务启停需群 `admin` / `owner` 或宿主管理员；私聊普通插件开关只影响调用者本人的会话，按平台、机器人 self 与用户隔离，不写成共享空群号状态。公开游戏、语料和 LLM 人设查询不因此封禁，官方通道仍遵守原有 allowlist。
+
 ## Web 运行时
 
 主仓 Web 端由以下模块组成，前端 LayIM 事件和 `ChatdacsID` cookie 名保持兼容：
@@ -89,7 +103,7 @@ execute(msg, userId, userName, groupId, groupName, options)
 
 `ChatDacsUploadMedia.install(layui)` 在应用层包装 `layui.data.content`，不改第三方 LayIM 源码。它只把严格本机 `/uploads/<32位十六进制随机名>[.<扩展名>]` 和安全显示名组成的音视频 `file(url)[name]` 转换为既有播放器语法；外部地址、畸形标记不转换。纯本机上传标记消息仍入库并广播，但跳过插件与普通聊天，避免额外机器人回复；有其他文本的混合消息不走此快捷路径。
 
-Harvey 本轮交付通过 3 个套件 / 90 项测试，另以真实 LayIM parser 和 Chrome DOM 验证恶意文件名样例未产生可执行节点、音视频播放器正常。这里记录该上传链路的实测范围，不宣称所有输入均已安全，也不把旧的独立媒体广播视为最终上传契约。
+上传链路已有定向测试及真实 LayIM parser、Chrome DOM 复验：已测恶意文件名样例未产生可执行节点，音视频播放器正常。该结论限于已测上传场景，不宣称所有输入均已安全，也不把旧的独立媒体广播视为最终上传契约。
 
 共享 `express.json` 的 `verify` 将原始 payload 复制到 `req.rawBody` Buffer，供 OneBot 回调签名校验使用；不改 `req.body`、不外发原文，JSON 默认限制保持 `100kb`。维护 Web 端代码时优先测试这些模块，`src/server.js` 保留 Express、profile、HTTP listen 和模块装配职责。
 
@@ -109,13 +123,13 @@ npm test -- --runInBand --runTestsByPath src/web/session.test.js src/web/message
 
 `src`、`href`、`poster` 和媒体控制器 `data-src` 的危险 URL 分隔符会安全序列化，防止实际 `playVideo` 与图片双击/放大代码读取 DOM 属性后再次拼接 HTML 时注入节点。`layim-event` / `data-src` 仅在合法音视频控制节点上保留；无效协议、伪造控制器不得借此获得交互能力。base64 图片以及相对、协议相对音视频地址已有兼容回归，不能为避险一律删除媒体或在后续代码里重新插值未经编码的 URL。
 
-交付证据为渲染 worker 的 40 项 Web 测试与独立 DOM 复验，属于离线场景，不等于线上或所有输入的安全验收。main 依赖注入、`WEB_HOST` 与 normal/degrade/logger 的已实现接口和分工结果见本页真实 main 小节；Node 26 完整联合候选回归仍待 Bohr 结果，六平台云端 workflow 本轮仍未运行。
+统一渲染边界已有定向测试与独立 DOM 复验，属于离线场景，不等于线上或所有输入的安全验收。main 依赖注入、`WEB_HOST` 与正常路径、平台降级、默认日志策略见本页真实 main 小节；本地验证与最终云端结果分别记录。
 
 ### 托盘通知的进程边界
 
 `plugins/tray.js` 的用户通知通过 `execFile` 调用 `msg.exe`，传参为 `[username, 'ChatDACS: ' + text]`，不经过 shell，保持 Unicode argv。固定前缀防止以 `/server` 等开头的用户文本成为 msg.exe 选项；托盘 notify 仍收到原文，不把系统消息前缀加到托盘正文。此处不声称托盘的其他菜单命令全部完成 execFile 迁移。
 
-源码与 mock 断言现已包含 `windowsHide: true`、`timeout: 5000`、`maxBuffer: 65536`。进程错误/超时不回退到 shell，不记录原始错误或输出；回复区分两个发送路径的成功、部分成功和失败。worker 报告的 28 项托盘 mock 通过是交付快照，不是宿主桌面实际通知或线上验收；合并后的最终验证仍由父任务负责。
+源码与 mock 断言现已包含 `windowsHide: true`、`timeout: 5000`、`maxBuffer: 65536`。进程错误/超时不回退到 shell，不记录原始错误或输出；回复区分两个发送路径的成功、部分成功和失败。mock 验证不代表宿主桌面实际通知或线上操作已验收。
 
 ```bash
 npm test -- --runInBand --runTestsByPath src/web/renderSecurity.test.js src/plugins/trayPlugin.test.js
@@ -128,22 +142,22 @@ npm test -- --runInBand --runTestsByPath src/web/renderSecurity.test.js src/plug
 - `Verify ChatDACS`：配置在 Pull Request 和 push 时运行，覆盖 Ubuntu 与 Windows，从 `.nvmrc` 读取 Node `26.13.0`，执行 `npm ci` 和 `node scripts/ci-runtime.js verify`。
 - `Build ChatDACS One-Click-To-Deploy Package`：在 `master` push 或手动触发时运行，构建全矩阵一键运行包。
 
-截至 2026-11-03，六平台是已配置的构建矩阵，不是六平台均已通过的发布结论。本轮云端未运行：
+截至 2026-11-04，云端状态如下。不同候选分别记录，不能将前一候选的成功结果视为最终版本通过：
 
-| 目标 | runner | 运行时架构 | 本轮证据 |
-| --- | --- | --- | --- |
-| `linux-x64` | `ubuntu-24.04` | x64 原生 | 云端未运行 |
-| `linux-arm64` | `ubuntu-24.04-arm` | arm64 原生 | 云端未运行 |
-| `win-x64` | `windows-latest` | x64 原生 | 本地隔离候选通过；云端未运行 |
-| `win-arm64` | `windows-11-arm` | x64-emulation | 云端未运行，ARM 真机未验收 |
-| `macos-x64` | `macos-15-intel` | x64 原生 | 云端未运行 |
-| `macos-arm64` | `macos-15` | arm64 原生 | 云端未运行 |
+| 候选 | 检查 / run | 状态 |
+| --- | --- | --- |
+| `572e` | build `41757018129` | 6/6 全部通过，含 Windows ARM |
+| `84c51d7` | CI `41757622782` | Ubuntu、Windows 均通过 |
+| `8ebd580` | CI `41758028133` | success |
+| `8ebd580` | 最终只读权限 build `41758029637` | 6/6 全部通过，6 个 artifact 已生成 |
 
-ARM 限制：本轮 `linux-arm64` 打包修正将排除仓内 ELF 机器类型为 62（x86-64）的 go-cqhttp，Node 与适配器仍使用原生 ARM64；QQ 接入使用独立部署的外部 OneBot/NapCat/SnowLuma 服务，不下载或自动替换协议程序。`win-arm64` 的 x64 仿真包仍可包含 x64 go-cqhttp。Canvas ARM64 源码编译涉及外部 Cairo/Pango 依赖，构建与运行依赖将由云端审计，暂不承诺免系统依赖运行，也不据此宣称构建通过。
+`8ebd580` 仅修改两个 workflow 与 `ci-runtime.test`，应用代码与 `84c51d7` 相同，权限回归 32 项测试通过。两个 workflow 均显式声明 `permissions: contents: read`，测试断言没有 job 覆盖权限。此声明不代表仓库默认权限已修改。该候选已完成六平台生产依赖安装、原生探针、真实 main 烟测、实际 ZIP 解压运行和启动器验证，并生成六个 artifact；未合并主分支或发布正式 Release。
+
+ARM 限制：`linux-arm64` 打包排除仓内 ELF 机器类型为 62（x86-64）的 go-cqhttp，Node 与适配器仍使用原生 ARM64；QQ 接入使用独立部署的外部 OneBot/NapCat/SnowLuma 服务，不下载或自动替换协议程序。`win-arm64` 的 x64 仿真包仍可包含 x64 go-cqhttp。Canvas ARM64 源码编译涉及外部 Cairo/Pango 依赖；上述 runner 通过不等于任意 ARM 主机免系统依赖运行或真机验收通过。
 
 构建不再使用旧 `pkg` 快照。每个 job 配置为先安装生产依赖并运行原生模块探针、Web 与真实 main startup 烟测，再使用独立安装的打包工具构建 Node.js `26.13.0` 运行包。`scripts/ci-runtime.js bundle` 检查包内运行时、manifest、入口语法、原生模块功能、真实 main shadow 启停和 ZIP 文件项，不能仅凭压缩成功判断可运行。
 
-本机 Windows x64 隔离候选已通过干净安装、Node `26.13.0` / ABI `147` 下的 Canvas/SQLite/分词/Sharp 功能探针、离线回归与 Web/官方 QQ 烟测、生产依赖安装和实际 ZIP 验证。这是当时的源码快照，不覆盖其他 worker 后续合并；合并后应刷新候选再运行验证。全局 Node、在线机器人、云端工作流和 Docker 镜像没有因此被替换、启动或构建。
+Windows x64 隔离验证已有干净安装、Node `26.13.0` / ABI `147` 下的 Canvas/SQLite/分词/Sharp 功能探针、Web/官方 QQ 离线烟测、生产依赖安装和实际 ZIP 检查证据。当前 `84c51d7` 的本地全量 verify 结果见真实 main 小节；运行包发布仍以该候选最终 build 为准，不将本地通过等同于六平台发布、Docker 镜像或真实 QQ 验收通过。
 
 `win-arm64` 因原生依赖预编译支持限制，配置在 `windows-11-arm` runner 上使用 Node.js `26.13.0` x64，通过 Windows 11 ARM 的 x64 兼容层运行。`release-manifest.json` 明确记录 `runtimeArch: "x64"` 与 `compatibility: "x64-emulation"`，不得称为 ARM64 原生包或 ARM 真机已通过。
 
@@ -191,7 +205,7 @@ runtime 用可选 `conversationState` 存储官方会话开关；新增迁移只
 
 `ONE_BOT_PROVIDER` 明确协议实现：`napcat` 仍是推荐路径，`snowluma` 是独立的代码接入路径，`external` 保持通用 OneBot 11 接入，`go-cqhttp` 用于旧部署。`GO_CQHTTP_SWITCH: true` 优先级最高，以确保旧配置仍能启动内置进程。SnowLuma 与 NapCat 分别管理配置和登录数据，不自动切换、互相启动或覆盖对方配置；本轮不启动 SnowLuma。
 
-SnowLuma 源码 v2.4.0 使用 `networks` / `enabled` / `accessToken` / `messageFormat`，不是 NapCat 的 `network` / `enable` / `token` / `messagePostFormat`。回调契约为 `X-Signature: sha1=<hex>`，即以 access token 为 key 对原始 payload 字节计算 HMAC-SHA1，不能改用 `JSON.stringify(req.body)`。schema 生成与 raw HMAC 校验由 OneBot 接入 worker 实现，细节见主仓 `integrations/snowluma/README.md` 和对应离线测试；工具不下载、安装或启动协议端，不承诺真实账号、私聊或群消息验收。只读就绪检查也会请求实际服务，需另行授权；当前文档不要求读者开启该 provider。
+SnowLuma 源码 v2.4.0 使用 `networks` / `enabled` / `accessToken` / `messageFormat`，不是 NapCat 的 `network` / `enable` / `token` / `messagePostFormat`。回调契约为 `X-Signature: sha1=<hex>`，即以 access token 为 key 对原始 payload 字节计算 HMAC-SHA1，不能改用 `JSON.stringify(req.body)`。schema 生成与 raw HMAC 校验已实现，细节见主仓 `integrations/snowluma/README.md` 和对应离线测试；工具不下载、安装或启动协议端，不承诺真实账号、私聊或群消息验收。只读就绪检查也会请求实际服务，需另行授权；当前文档不要求读者开启该 provider。
 
 接入层通过 HTTP 对接独立部署的 SnowLuma，不捆绑其源码、程序或原生组件。上游 [v2.4.0 许可](https://github.com/SnowLuma/SnowLuma/blob/v2.4.0/LICENSE) 为源码可见非商业许可，不是 OSI 开源许可；商业使用和再分发应核对上游条款。`ONE_BOT_CREDENTIALS_FILE` 的相对路径始终从进程 cwd 解析，不从 `--config` 的 YAML 目录解析，CLI 与主程序相同。
 
@@ -205,7 +219,11 @@ Guild 内嵌 OneBot 发送也已使用 `createOneBotSender` 和 `createOneBotHtt
 
 OneBot webhook 收到事件后立即返回 HTTP `204`，事件在后台继续处理，异常只记录到日志，不会重复操作已经结束的 HTTP 响应。进程级异常通知也会隔离 QQ 管理员通知失败，Web-only 模式不依赖 OneBot 在线。
 
-`src/platforms/oneBotHttp.js` 已提供 OneBot API 鉴权与超时边界，token 来自独立凭据文件或 `CHATDACS_ONEBOT_ACCESS_TOKEN`，不应写入日志、Git 或文档示例。SnowLuma 要求非空 token；不要把 NapCat 的无 token 回环兼容配置直接套到 SnowLuma。不要将协议端 API 端口直接暴露到公网，provider 配置、回调鉴权和账号收发需分别验收。
+QQ 消息入口先丢弃自身 `message_sent` 和自身消息，避免机器人回复回流。仅普通 `message` 按 self / scope / peer / sender / message ID 隔离去重，窗口 5 分钟、最多 4096 项；缺失或无效 ID 不去重，处理失败不自动重试。`notice` / `poke` 保留原事件路径，不被消息去重拦截。该进程内有界去重不提供跨重启或 exactly-once 保证。
+
+`src/platforms/oneBotHttp.js` 保留 scoped Bearer 与超时边界，只向配置的 API origin 和基路径注入 token，禁止跟随重定向。token 来自私密 JSON 的 `accessToken` 或优先的 `CHATDACS_ONEBOT_ACCESS_TOKEN`，默认文件为 `config/onebot.credentials.json`，不应写入日志、Git 或文档示例。NapCat 与 SnowLuma 默认都必须使用真实有效的 token，回环部署也不豁免。只有 provider 未声明、`external` 或旧 go-cqhttp 路径，在未设置 token 环境变量、未显式声明凭据文件且默认文件不存在时才兼容旧无 token 模式；显式空值、不可读文件、非法 JSON 或无效 token 均拒绝回退。
+
+回调兼容仅 Bearer 鉴权；若同时提供 `X-Signature`，原始请求体 HMAC 必须有效，不能用 Bearer 绕过无效签名。`System.ONE_BOT_SELF_ID` 可校验入站回调的 `self_id`，拒绝账号不匹配的事件。不要将协议端 API 端口直接暴露到公网，跨机须使用 TLS 或加密隧道及访问控制；provider 配置、回调鉴权和账号收发需分别验收。
 
 ## QQ 处理器拆分
 
