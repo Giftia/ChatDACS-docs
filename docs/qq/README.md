@@ -86,7 +86,7 @@ Windows 可使用 `C:/private/local.yml`。`--config` 不改变 cwd，相对凭�
 
 NapCat 启动探测失败不会让 ChatDACS 退出，这是为了保证 Web 与其他平台可独立运行。由于 QQ Adapter 需要在启动时读取群列表，NapCat 恢复后仍需重启 ChatDACS。
 
-可配置 `System.ONE_BOT_SELF_ID`，校验入站回调的 `self_id`，拒绝账号不匹配的事件；该校验及就绪检查成功不等于消息送达。
+可配置 `System.ONE_BOT_SELF_ID`，同时校验 OneBot API 登录账号与入站回调的 `self_id`，避免接错账号。SnowLuma 还会检查 `get_status` 的在线及链路健康状态，因为登录信息本身不代表在线。检查失败时不初始化 QQ 群服务或主动聊天，Web 与其他平台仍可使用；先恢复 OneBot 服务，再重启 ChatDACS。就绪检查成功不等于消息送达。
 
 自身 `message_sent` 和自身消息在入口丢弃，避免回复回流。普通 `message` 按 self / scope / peer / sender / message ID 隔离去重，窗口 5 分钟、最多 4096 项；缺失或无效 ID 不去重，失败不自动重试。`notice` / `poke` 保留原处理路径，不参与消息去重。主动发送的 `canSend` 包含群服务开关，执行“闭菊”后不再主动发送。
 
