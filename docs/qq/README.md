@@ -88,6 +88,8 @@ NapCat 启动探测失败不会让 ChatDACS 退出，这是为了保证 Web 与�
 
 可配置 `System.ONE_BOT_SELF_ID`，同时校验 OneBot API 登录账号与入站回调的 `self_id`，避免接错账号。SnowLuma 还会检查 `get_status` 的在线及链路健康状态，因为登录信息本身不代表在线。检查失败时不初始化 QQ 群服务或主动聊天，Web 与其他平台仍可使用；先恢复 OneBot 服务，再重启 ChatDACS。就绪检查成功不等于消息送达。
 
+使用 SnowLuma 时，启用 `System.CONNECT_ONE_BOT_SWITCH` 并关闭 `System.GO_CQHTTP_SWITCH`；HTTP API 和 HTTP 回推须使用同一 token。生成器只用于实际监听地址；代理地址应在两端配置完成后再填入 ChatDACS 的 `ONE_BOT_API_URL`。
+
 自身 `message_sent` 和自身消息在入口丢弃，避免回复回流。普通 `message` 按 self / scope / peer / sender / message ID 隔离去重，窗口 5 分钟、最多 4096 项；缺失或无效 ID 不去重，失败不自动重试。`notice` / `poke` 保留原处理路径，不参与消息去重。主动发送的 `canSend` 包含群服务开关，执行“闭菊”后不再主动发送。
 
 原插件状态 `findOrCreate` 的读事务会与消息写入竞争并触发 `SQLITE_BUSY`；已改为 `findCreateFind`，同群插件状态操作进行 per-group 序列化。该修复的隔离验证与真实账号验收须分开判断。
